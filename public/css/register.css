@@ -1,0 +1,15 @@
+.register-card {
+    background-image: url('../img//subtle-prism.svg');
+    background-position: center;
+    font-family: 'Space Mono', monospace;
+}
+
+.register-button {
+    background-color: #00171F !important;
+    color: white !important;
+    transition: transform 0.3s;
+}
+
+.register-button:hover {
+    transform: scale(1.05);
+}

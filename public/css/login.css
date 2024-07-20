@@ -1,0 +1,15 @@
+.login-card {
+    background-image: url('../img//subtle-prism.svg');
+    background-position: center;
+    font-family: 'Space Mono', monospace;
+}
+
+.login-button {
+    background-color: #00171F !important;
+    color: white !important;
+    transition: transform 0.3s;
+}
+
+.login-button:hover {
+    transform: scale(1.05);
+}

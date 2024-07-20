@@ -1,0 +1,94 @@
+<nav class=" navbar custom-navbar   navbar-expand-lg sticky-top ">
+    <div class="container-fluid px-5">
+        <div class>
+            <a class="navbar-brand  text-light" href="/">
+                <img
+                    width="75px"
+                    src="/static/img/logo.png" alt srcset>
+                <label for>CodeOnly</label>
+
+            </a>
+        </div>
+
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="offcanvas offcanvas-start" tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header custom-navbar">
+                <a class="navbar-brand  text-light" href="/">
+                    <img
+                        width="75px"
+                        src="/static/img/logo.png" alt srcset>
+                </a>
+                <h5 class="offcanvas-title"
+                    id="offcanvasNavbarLabel">CodeOnly</h5>
+                <button type="button" class="btn-close "
+                    style="background-color: #36AAA6; color: white;"
+                    data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body custom-navbar px-5">
+                <ul
+                    class="navbar-nav justify-content-start flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link text-light " aria-current="page"
+                            href="/"><i
+                                class="fi fi-sr-house-chimney"></i><span>
+                                Home</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link  text-light"
+                            href="/categories"><i
+                                class="fi fi-ss-category"></i><span>
+                                Categories</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">
+                            <i class="fi fi-sr-share"></i>
+                            <span>Share Code</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                    <li class="nav-item  dropdown ">
+
+                        <a class="nav-link text-light dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul
+                            class="dropdown-menu text-center dropdown-menu-lg-end  custom-dropdown">
+                            <li><a class="dropdown-item"
+                                    href="/login"><i
+                                        class="fi fi-ss-check-circle"></i><span>
+                                        Login</span></a></li>
+                            <li><a class="dropdown-item"
+                                    href="/register"><i
+                                        class="fi fi-sr-user-add"></i><span>
+                                        Register</span></a></li>
+                            <li><a class="dropdown-item" href="#"><i
+                                        class="fi fi-ss-user-skill-gear"></i>
+                                    <span> My Account</span>
+                                </a></li>
+                            <li><a class="dropdown-item"
+                                    href="/logout"><i
+                                        class="fi fi-sr-circle-xmark"></i><span>
+                                        Logout</span></a></li>
+                        </ul>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</nav>

@@ -1,0 +1,195 @@
+.custom-header-card {
+    background-image: url('../img//subtle-prism.svg') !important;
+    color: white;
+    border: 2px solid #36AAA6;
+    border-radius: 100px;
+    background-repeat: no-repeat;
+}
+
+.code-details-card {
+    border-radius: 10px;
+    border: 2px solid #36AAA6;
+}
+
+.code-details-card .card-header {
+    background-image: url('../img//subtle-prism.svg') !important;
+    color: white !important;
+
+}
+
+.code-details-card .card-body {
+    background-color: #00171F !important;
+    color: white !important;
+}
+
+
+.code-details-card .card-footer {
+    background-image: url('../img//subtle-prism.svg') !important;
+    color: white !important;
+}
+
+.card-footer-btn {
+    background-color: #00171F !important;
+    transition: transform 0.3s;
+}
+
+.card-footer-btn:hover {
+    background-color: #00171F !important;
+    transform: scale(1.1);
+}
+
+
+.comment-card {
+    border-radius: 10px;
+    border: 2px solid #36AAA6;
+}
+
+.comments-card {
+    border-radius: 10px;
+    border: 2px solid #36AAA6;
+}
+
+.comment-card .card-header {
+    background-image: url('../img//subtle-prism.svg') !important;
+    color: white !important;
+}
+
+.comment-card .card-body {
+    background-color: #00171F !important;
+
+    color: white !important;
+}
+
+.comment-card .card-footer {
+    background-color: #00171F !important;
+}
+
+
+.comments-card .card-header {
+    background-image: url('../img//subtle-prism.svg') !important;
+    color: white !important;
+}
+
+.comments-card .card-body {
+    background-color: #00171F !important;
+
+    color: white !important;
+}
+
+.comments-card .card-footer {
+    background-color: #00171F !important;
+}
+
+.right-content-card {
+    border-radius: 10px;
+    border: 2px solid #36AAA6;
+}
+
+.right-content-card .card-header {
+    background-image: url('../img/subtle-prism.svg');
+    color: white !important;
+}
+
+.right-content-card .card-body {
+    background-color: #00171F !important;
+    color: white !important;
+}
+
+.list-group-item {
+    background-color: #00171F !important;
+    color: white !important;
+    border: 0px;
+}
+
+.input-group {
+    border: 2px solid #36AAA6;
+    border-radius: 10px;
+}
+
+.form-control {
+    color: white !important;
+    background-color: transparent !important;
+    border: 1px solid #36AAA6;
+}
+
+.input-group-text {
+    border: 0px;
+
+    background-image: url('../img/subtle-prism.svg');
+    background-color: transparent !important;
+    color: white !important;
+
+}
+
+input[type='text']::placeholder {
+    color: white !important;
+    opacity: 0.7 !important;
+}
+
+textarea::placeholder {
+    color: white !important;
+    opacity: 0.7 !important;
+}
+
+.send-btn {
+    background-image: url('../img/subtle-prism.svg');
+    color: white !important;
+}
+
+.comments-row {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+
+.comments-card .card-body {
+    border: 2px solid #36AAA6;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+
+
+.comment-card .card-header {
+    border-bottom: 0px;
+}
+
+.comment-card .card-footer {
+    border-top: 0px;
+}
+
+
+.comment-card .card-body {
+    border: 2px solid #36AAA6;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+}
+
+
+.comment-card .card-footer {
+    background-image: url('../img/subtle-prism.svg');
+
+}
+
+.like-container {
+    display: flex;
+    align-items: center;
+}
+
+.like-count {
+    margin-left: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
+}
+
+.social-link {
+    transition: transform 0.3s;
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+}

@@ -1,0 +1,36 @@
+<div class="col-md-6 my-2">
+    <div
+        class="card code-card">
+        <div
+            class="card-header d-flex justify-content-between align-items-center text-light">
+            <label class="fs-5 fw-bold">
+                <%= code.title %>
+            </label>
+            <label
+                class="fs-6 fw-bold">
+                <%= code.date %>
+            </label>
+        </div>
+        <div class="card-body">
+            <p> <%= code.desc %>
+            </p>
+            <div class>
+                <% for( let i = 0; i < code.keys.length;
+                i++ ) { %>
+                <span
+                    class="badge rounded-pill text-bg-light"><%=
+                    code.keys[i] %>
+                </span>
+                <% } %>
+            </div>
+        </div>
+        <div
+            class="card-footer d-flex justify-content-between">
+            <label for class="fs-5 text-light fw-bold"><%= code.author
+                %></label>
+            <a href="/code-details/<%= code.id %>"
+                class="btn read-btn  mx-2">Read
+                the Code</a>
+        </div>
+    </div>
+</div>

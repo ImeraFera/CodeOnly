@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/header.ejs') %>
+        <link rel="stylesheet" href="/static/css/code-list.css">
+    </head>
+    <body>
+        <%- include('../partials/navbar.ejs') %>
+
+        <div class="container-fluid text-light">
+            <div class="row justify-content-center p-3 align-items-center">
+                <div class="col-md-12">
+                    <div class="card text-center custom-header-card">
+                        <div class="card-header">
+                            <h1>Code List For <%= progLang.title %></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-3 ">
+                <div class="col-md-3">
+                    <div class="container">
+                        <div class="card filters-card">
+                            <div
+                                class="card-header text-center text-light ">
+                                <h4>Filters</h4>
+                            </div>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <input
+                                        class="form-control form-control-sm "
+                                        type="text"
+                                        placeholder="Search in keywords">
+
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1"
+                                        type="checkbox" value
+                                        id="firstCheckbox">
+                                    <label class="form-check-label"
+                                        for="firstCheckbox">First
+                                        checkbox</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1"
+                                        type="checkbox" value
+                                        id="secondCheckbox">
+                                    <label class="form-check-label"
+                                        for="secondCheckbox">Second
+                                        checkbox</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1"
+                                        type="checkbox" value
+                                        id="thirdCheckbox">
+                                    <label class="form-check-label"
+                                        for="thirdCheckbox">Third
+                                        checkbox</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="container">
+                        <div class="card code-list-card ">
+                            <div class="card-header d-flex">
+                                <label class="fs-4">List</label>
+                                <div class="dropdown ms-auto">
+                                    <button
+                                        class="btn order-btn btn-sm dropdown-toggle"
+                                        type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        Order By
+                                    </button>
+                                    <ul
+                                        class="dropdown-menu order-dropdown">
+                                        <li><a class="dropdown-item"
+                                                href="#">Date</a></li>
+                                        <li><a class="dropdown-item"
+                                                href="#">Algorithm Name</a></li>
+                                        <li><a class="dropdown-item"
+                                                href="#">Author Name</a></li>
+                                        <li><a class="dropdown-item"
+                                                href="#">Like</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <% for (let index = 0; index <
+                                    filteredCodes.length; index++) { %>
+                                    <% let code = filteredCodes[index]; %>
+                                    <%-
+                                    include('../partials/code-list-card.ejs', {
+                                    code: code }) %>
+                                    <% } %>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script
+                src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <%- include('../partials/footer.ejs') %>
+
+        </body>
+    </html>

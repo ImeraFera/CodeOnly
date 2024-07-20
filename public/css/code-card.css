@@ -1,0 +1,26 @@
+.custom-code-card {
+    background-color: #36AAA6 !important;
+    background-image: url('../img//subtle-prism.svg');
+    color: white;
+    background-position: unset;
+    box-shadow: 1px 1px 1px 1px #01171F;
+    transition: transform 0.3s ease;
+
+}
+
+.custom-code-card:hover {
+    transform: scale(1.05);
+}
+
+.custom-btn {
+    background-color: #01171F;
+    color: white;
+    transition: transform 0.3s ease;
+
+}
+
+.custom-btn:hover {
+    background-color: #01171F;
+    transform: scale(1.05);
+    color: white;
+}

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/header.ejs') %>
+        <link rel="stylesheet" href="/static/css/code-card.css">
+        <link rel="stylesheet" href="/static/css/popular-categories-card.css">
+    </head>
+    <body>
+        <%- include('../partials/navbar.ejs') %>
+        <div class="container-fluid text-light">
+            <div class="container  p-3">
+                <div class="row ">
+                    <div
+                        class="col-md-9 starting-col kenburns-container  my-3 p-3">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12 ">
+                                <img src="/static/img/slogan.png"
+                                    class="img-fluid "
+                                    alt
+                                    srcset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <form role="search" class="d-flex mt-3">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control"
+                                        placeholder="Search Codes"
+                                        aria-label="Search Codes">
+                                    <button class="btn search-button"
+                                        type="button"
+                                        id="button-addon2"><i
+                                            class="fi fi-bs-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row text-center">
+                            <h4>Do You Want To Add Code For Other
+                                Programmers ?</h4>
+                        </div>
+                        <div class="row text-center mt-3">
+                            <div class="col-md-12">
+                                <div>
+                                    <button type="button"
+                                        class="btn home-account-button me-1">
+                                        Login
+                                    </button>
+                                    <label for>Or</label>
+                                    <button type="button"
+                                        class="btn   home-account-button ms-1">
+                                        Register
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center  mt-3">
+                            <h6>And Starting To Share Your Codes!</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3 my-3">
+                        <%- include('../partials/popular-codes-card.ejs') %>
+                    </div>
+                </div>
+            </div>
+            <div class="container my-3 p-0">
+                <div class="card "
+                    style="background-color: transparent;
+                    border: 2px solid #36AAA6;
+                    ">
+                    <div
+                        class="card-header text-center text-light custom-container">
+                        <h3>Scoreboard</h3>
+                    </div>
+                    <div class="card-body">
+                        <div
+                            class="row justify-content-around align-items-center">
+                            <div class="col-md-3  my-1">
+                                <a href="http://">
+                                    <div
+                                        class="score-card playing  ">
+
+                                        <div class="wave wave-first"></div>
+                                        <div class="wave wave-first"></div>
+                                        <div class="wave wave-first"></div>
+
+                                        <div class="infotop fw-bold">
+                                            <img src="/static/img/3.jpg"
+                                                class="rounded-circle mb-3"
+                                                width="100px"
+                                                height="100px"
+                                                alt>
+                                            <br>ImeraFeram<br>
+                                            <div
+                                                class="name">1232</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-3  my-1">
+                                <a href="http://">
+                                    <div
+                                        class="score-card playing ">
+
+                                        <div class="wave wave-second"></div>
+                                        <div class="wave wave-second"></div>
+                                        <div class="wave wave-second"></div>
+
+                                        <div class="infotop fw-bold">
+                                            <img src="/static/img/3.jpg"
+                                                class="rounded-circle mb-3"
+                                                width="100px"
+                                                height="100px"
+                                                alt>
+                                            <br>ImeraFeram<br>
+                                            <div
+                                                class="name">1232</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-3  my-1">
+                                <a href="http://">
+
+                                    <div
+                                        class="score-card playing ">
+
+                                        <div class="wave wave-third"></div>
+                                        <div class="wave wave-third"></div>
+                                        <div class="wave wave-third"></div>
+
+                                        <div class="infotop fw-bold">
+                                            <img src="/static/img/2.jpg"
+                                                class="rounded-circle mb-3"
+                                                width="100px"
+                                                height="100px"
+                                                alt>
+                                            <br>ImeraFeram<br>
+                                            <div
+                                                class="name">1232</div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="container my-3 p-0 ">
+                <div class="card "
+                    style="background-color: transparent;
+                    border: 2px solid #36AAA6;
+                    ">
+                    <div
+                        class="card-header text-center text-light custom-container">
+                        <h3>Recently Codes</h3>
+                    </div>
+                    <div class="card-body"> <div class="row">
+
+                            <div class="col-md-3">
+                                <%- include('../partials/code-card.ejs') %>
+                            </div>
+                            <div class="col-md-3">
+                                <%- include('../partials/code-card.ejs') %>
+                            </div>
+                            <div class="col-md-3">
+                                <%- include('../partials/code-card.ejs') %>
+                            </div>
+                            <div class="col-md-3">
+                                <%- include('../partials/code-card.ejs') %>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- <div>
+                    <h1 class="text-center">Recently Codes</h1>
+                    <hr>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <%- include('../partials/code-card.ejs') %>
+                    </div>
+                    <div class="col-md-3">
+                        <%- include('../partials/code-card.ejs') %>
+                    </div>
+                    <div class="col-md-3">
+                        <%- include('../partials/code-card.ejs') %>
+                    </div>
+                    <div class="col-md-3">
+                        <%- include('../partials/code-card.ejs') %>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- ! why should i use code only container -->
+            <div class="container my-3 custom-container p-3">
+                <div class="row">
+                    <h1 class="text-center">
+                        Why Should I Use 'CodeOnly' ?
+                    </h1>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col ">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Mollitia aliquid maiores veritatis. Delectus
+                            ex at voluptatum omnis facere iure, nobis ratione
+                            quos quasi distinctio dicta hic eveniet tenetur
+                            sapiente dolore!</p>
+                        <ul>
+                            <li>Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Fuga laudantium quam quae
+                                adipisci nobis. Assumenda quae placeat corrupti
+                                cum quasi sunt distinctio neque tempora,
+                                sapiente deserunt amet fugit aliquam ipsum?</li>
+                            <li>Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Fuga laudantium quam quae
+                                adipisci nobis. Assumenda quae placeat corrupti
+                                cum quasi sunt distinctio neque tempora,
+                                sapiente deserunt amet fugit aliquam ipsum?</li>
+                            <li>Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Fuga laudantium quam quae
+                                adipisci nobis. Assumenda quae placeat corrupti
+                                cum quasi sunt distinctio neque tempora,
+                                sapiente deserunt amet fugit aliquam ipsum?</li>
+                            <li>Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Fuga laudantium quam quae
+                                adipisci nobis. Assumenda quae placeat corrupti
+                                cum quasi sunt distinctio neque tempora,
+                                sapiente deserunt amet fugit aliquam ipsum?</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <!-- ! Finish -->
+
+        </div>
+
+        <%- include('../partials/footer.ejs') %>
+
+        <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,68 @@
+.custom-navbar {
+    background-color: #00171F !important;
+    color: white !important;
+    font-family: 'Space Mono', monospace;
+}
+
+.nav-item .nav-link:hover {
+    color: #36AAA6 !important;
+}
+
+.nav-link i {
+    vertical-align: middle;
+}
+
+
+.dropdown-item i {
+    vertical-align: middle;
+}
+
+
+.navbar-toggler {
+    background-color: #36AAA6 !important;
+}
+
+.custom-dropdown {
+    background-image: url('../img//subtle-prism.svg');
+}
+
+.custom-dropdown .dropdown-item {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.custom-dropdown .dropdown-item::before,
+.custom-dropdown .dropdown-item::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    height: 3px;
+    background-color: black;
+    width: 0;
+    transition: width 0.3s ease, left 0.5s ease, right 0.5s ease;
+}
+
+.custom-dropdown .dropdown-item::before {
+    left: 0;
+}
+
+.custom-dropdown .dropdown-item::after {
+    right: 0;
+}
+
+.custom-dropdown .dropdown-item:hover::before,
+.custom-dropdown .dropdown-item:hover::after {
+    width: 50%;
+}
+
+.custom-dropdown .dropdown-item:hover {
+    background-color: #ffffff00;
+}
+
+.custom-dropdown .dropdown-item:hover::before {
+    left: 50%;
+}
+
+.custom-dropdown .dropdown-item:hover::after {
+    right: 50%;
+}

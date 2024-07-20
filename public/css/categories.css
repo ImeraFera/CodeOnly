@@ -1,0 +1,63 @@
+.custom-header-card {
+    background-image: url('../img//subtle-prism.svg') !important;
+    color: white;
+    border: 2px solid #36AAA6;
+    border-radius: 100px;
+    background-repeat: no-repeat;
+}
+
+
+.custom-category-card {
+    overflow: hidden;
+    position: relative;
+    height: auto;
+    background-image: url('../img//subtle-prism.svg') !important;
+    border-radius: 50px 50px 150px 150px;
+    -webkit-border-radius: 50px 50px 150px 150px;
+    -moz-border-radius: 50px 50px 150px 150px;
+
+
+}
+
+.card-img-container {
+    position: relative;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.card-img-container img {
+    width: 100%;
+    display: block;
+}
+
+.card-body {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    transition: top 0.5s ease, opacity 0.5s ease;
+    background: white;
+    padding: 1rem;
+    background-color: transparent !important;
+    color: white;
+}
+
+.card:hover .card-img-container {
+    transform: translateY(-100%);
+}
+
+.card:hover .card-body {
+    top: 0;
+    opacity: 1;
+}
+
+.custom-go-btn {
+    transform: scale(1);
+    background-color: #00171F !important;
+    color: white;
+    transition: transform 0.3s ease !important;
+    color: white !important;
+}
+
+.custom-go-btn:hover {
+    color: white;
+    transform: scale(1.1) !important;
+}

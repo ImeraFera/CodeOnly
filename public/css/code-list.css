@@ -1,0 +1,133 @@
+.custom-header-card {
+    background-image: url('../img//subtle-prism.svg') !important;
+    color: white;
+    border: 2px solid #36AAA6;
+    border-radius: 100px;
+    background-repeat: no-repeat;
+}
+
+.filters-card {
+    background-color: transparent !important;
+    border: 2px solid #36AAA6 !important;
+    border-radius: 10px !important;
+
+}
+
+.filters-card .card-header {
+    background-image: url('../img//subtle-prism.svg') !important;
+
+}
+
+.filters-card .list-group-item {
+    color: white !important;
+    background-color: transparent !important;
+    border: 0px;
+
+}
+
+.code-list-card {
+    color: white !important;
+    background-color: transparent !important;
+    border: 2px solid #36AAA6 !important;
+    border-radius: 10px !important;
+}
+
+.code-list-card .card-header {
+    background-image: url('../img//subtle-prism.svg') !important;
+}
+
+
+.code-list-card .card-footer {
+    background-image: url('../img//subtle-prism.svg') !important;
+}
+
+.code-card {
+    border: 0px;
+    background-color: transparent !important;
+
+}
+
+.code-card .card-body {
+    color: white !important;
+    background-color: #00171F;
+}
+
+.order-btn {
+    background-color: #00171F;
+    color: white !important;
+    transition: transform 0.5s;
+    border: 0px !important;
+}
+
+.order-btn:hover {
+    background-color: #00171F;
+    color: white !important;
+}
+
+
+/* 
+.order-dropdown .dropdown-item:hover {
+    background-color: #00171F;
+    color: #36AAA6 !important;
+} */
+
+.read-btn {
+    background-color: #00171F !important;
+    color: white !important;
+    transition: transform 0.5s;
+    border: 0px !important;
+
+}
+
+.read-btn:hover {
+    background-color: #00171F !important;
+    color: white !important;
+    transform: scale(1.05);
+}
+
+.order-dropdown {
+    background-image: url('../img//subtle-prism.svg');
+    border: #00171F 2px solid;
+}
+
+.order-dropdown .dropdown-item {
+    position: relative;
+    transition: color 0.3s ease;
+    color: #00171F !important;
+}
+
+.order-dropdown .dropdown-item::before,
+.order-dropdown .dropdown-item::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    height: 3px;
+    background-color: #00171F;
+    width: 0;
+    transition: width 0.3s ease, left 0.5s ease, right 0.5s ease;
+}
+
+.order-dropdown .dropdown-item::before {
+    left: 0;
+}
+
+.order-dropdown .dropdown-item::after {
+    right: 0;
+}
+
+.order-dropdown .dropdown-item:hover::before,
+.order-dropdown .dropdown-item:hover::after {
+    width: 50%;
+}
+
+.order-dropdown .dropdown-item:hover {
+    background-color: #ffffff00;
+}
+
+.order-dropdown .dropdown-item:hover::before {
+    left: 50%;
+}
+
+.order-dropdown .dropdown-item:hover::after {
+    right: 50%;
+}

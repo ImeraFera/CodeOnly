@@ -1,0 +1,52 @@
+.popular-categories-card {
+
+    color: white;
+    background-color: rgba(255, 255, 255, 0);
+    font-family: 'Space Mono', monospace;
+    border-radius: 10px !important;
+    border: 2px #3FAAA6 solid;
+}
+
+.popular-categories-card .card-header {
+    background-image: url('../img//subtle-prism.svg');
+    color: white;
+    background-position: center;
+
+}
+
+.popular-categories-card .list-group .list-group-item {
+    color: white;
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+
+
+/* .custom-hr {
+    border: none;
+    border-top: 2px solid #3FAAA6;
+    opacity: 100;
+} */
+
+.custom-link {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+.custom-link::after {
+    content: '\2190';
+    position: absolute;
+    right: -20px;
+    color: #3FAAA6;
+    opacity: 0;
+    transition: opacity 0.3s, right 0.3s;
+}
+
+.custom-link:hover {
+    color: #3FAAA6;
+}
+
+.custom-link:hover::after {
+    opacity: 1;
+    right: 0;
+}
