@@ -1,24 +1,35 @@
 const express = require('express');
 const router = express.Router();
+let activePage = {
+    name: "",
+};
 
-
+router.get("/profile-settings", (req, res) => {
+    activePage.name = "profile-settings";
+    res.render('admin/profile-settings', { activePage });
+})
 
 router.get("/new-project", (req, res) => {
-    res.render('admin/new-project');
+    activePage.name = "new-project";
+    res.render('admin/new-project', { activePage });
+})
+
+
+router.get("/project-list", (req, res) => {
+    activePage.name = "project-list";
+    res.render('admin/project-list', { activePage });
 })
 
 
 router.get("/", (req, res) => {
-    res.render('admin/admin-home');
+    activePage.name = "home";
+    res.render('admin/admin-home', { activePage });
 })
 
 router.post("/new-project", (req, res) => {
     console.log(req.body);
     res.redirect('/admin-panel');
 })
-
-
-
 
 
 module.exports = router;
