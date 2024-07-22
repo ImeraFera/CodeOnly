@@ -26,7 +26,7 @@
 }
 
 .editor-container_document-editor {
-    border: 1px solid var(--ck-color-base-border);
+    border: 2px solid #36aaa6;
 }
 
 .editor-container_document-editor .editor-container__toolbar {
@@ -54,6 +54,7 @@
     border-left: 0;
     border-right: 0;
     background-color: #a8b8bd !important;
+
 }
 
 .editor-container_document-editor .editor-container__editor-wrapper {
@@ -91,47 +92,7 @@
     margin-top: 28px;
     margin-left: 10px;
     margin-right: 10px;
-}
 
-.editor-container__minimap-wrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-}
-
-.editor-container__sidebar_minimap {
-    margin: 0;
-    flex: 0 0 auto;
-    border-left: 1px solid var(--ck-color-toolbar-border);
-    position: relative;
-    overflow: hidden;
-    max-height: 100%;
-}
-
-.editor-container_include-minimap.ck-minimap__iframe-content {
-    background: hsl(0, 0%, 100%);
-}
-
-.editor-container_include-minimap.ck-minimap__iframe-content .ck.ck-editor__editable {
-    font-family: 'Lato';
-    line-height: 1.6;
-    flex: 1 1 auto;
-    word-break: break-word;
-    box-sizing: border-box;
-    min-width: calc(210mm + 2px);
-    max-width: calc(210mm + 2px);
-    min-height: 297mm;
-    height: fit-content;
-    padding: 20mm 12mm;
-}
-
-.editor-container_include-minimap .editor-container__editor-wrapper {
-    height: 100%;
-}
-
-.editor-container_include-minimap .editor-container__sidebar_minimap {
-    max-width: calc(var(--ckeditor5-preview-sidebar-width) / 2);
-    min-width: calc(var(--ckeditor5-preview-sidebar-width) / 2);
 }
 
 .ck-content h3.category {
