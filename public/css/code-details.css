@@ -14,13 +14,18 @@
 .code-details-card .card-header {
     background-image: url('../img//subtle-prism.svg') !important;
     color: white !important;
+    border: 2px solid #36AAA6;
 
 }
 
 .code-details-card .card-body {
     background-color: #00171F !important;
     color: white !important;
+    border: 2px solid #36AAA6;
+
 }
+
+
 
 
 .code-details-card .card-footer {
@@ -85,14 +90,23 @@
     border: 2px solid #36AAA6;
 }
 
+.right-content-card .list-group {
+    border: 2px solid #36AAA6;
+
+}
+
 .right-content-card .card-header {
     background-image: url('../img/subtle-prism.svg');
     color: white !important;
+    border: 2px solid #36AAA6;
+
 }
 
 .right-content-card .card-body {
     background-color: #00171F !important;
     color: white !important;
+    border: 2px solid #36AAA6;
+
 }
 
 .list-group-item {
@@ -192,4 +206,30 @@ textarea::placeholder {
 
 .social-link:hover {
     transform: scale(1.1);
+}
+
+
+.custom-link {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+.custom-link::after {
+    content: '\2190';
+    position: absolute;
+    right: -20px;
+    color: #3FAAA6;
+    opacity: 0;
+    transition: opacity 0.3s, right 0.3s;
+}
+
+.custom-link:hover {
+    color: #3FAAA6;
+}
+
+.custom-link:hover::after {
+    opacity: 1;
+    right: 0;
 }

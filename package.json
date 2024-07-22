@@ -12,7 +12,9 @@
   "description": "",
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "ckeditor5": "^42.0.1",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "ejs": "^3.1.10"
+    "mongoose": "^8.5.1"
   }
 }
