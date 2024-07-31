@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Python",
+        "img": "/static/img/python.svg",
+        "numberOfProjects": 150,
+        "url": "/code-list/python"
+    },
+    {
+        "name": "JavaScript",
+        "img": "/static/img/javascript.svg",
+        "numberOfProjects": 200,
+        "url": "/code-list/javascript"
+    },
+    {
+        "name": "Java",
+        "img": "/static/img/java.svg",
+        "numberOfProjects": 180,
+        "url": "/code-list/java"
+    },
+    {
+        "name": "C#",
+        "img": "/static/img/csharp.svg",
+        "numberOfProjects": 120,
+        "url": "/code-list/csharp"
+    },
+    {
+        "name": "PHP",
+        "img": "/static/img/php.svg",
+        "numberOfProjects": 140,
+        "url": "/code-list/php"
+    },
+    {
+        "name": "React",
+        "img": "/static/img/react.svg",
+        "numberOfProjects": 250,
+        "url": "/code-list/react"
+    },
+    {
+        "name": "MySQL",
+        "img": "/static/img/mysql.svg",
+        "numberOfProjects": 100,
+        "url": "/code-list/mysql"
+    },
+    {
+        "name": "HTML",
+        "img": "/static/img/html.svg",
+        "numberOfProjects": 130,
+        "url": "/code-list/html"
+    },
+    {
+        "name": "CSS",
+        "img": "/static/img/css.svg",
+        "numberOfProjects": 110,
+        "url": "/code-list/css"
+    }
+]

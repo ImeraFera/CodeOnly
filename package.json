@@ -15,6 +15,9 @@
     "ckeditor5": "^42.0.1",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "mongoose": "^8.5.1"
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.2",
+    "mysql2": "^3.11.0",
+    "sequelize": "^6.37.3"
   }
 }

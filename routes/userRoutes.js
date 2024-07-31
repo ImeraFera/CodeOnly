@@ -1,7 +1,12 @@
 const express = require('express');
 const router = express.Router();
+
+// * temp datas
 const progLangs = require('../temp/progLangs');
 const codes = require('../temp/codes');
+
+// * Controllers
+const userController = require('../controllers/user');
 
 
 
@@ -38,10 +43,29 @@ router.get("/register", (req, res) => {
     res.render('user/register');
 })
 
+router.post("/register", async (req, res) => {
 
-router.get("/categories", (req, res) => {
-    res.render('user/categories');
+    const newUser = {
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        passwordRepeat: req.body.passwordRepeat
+    }
+
+    if (newUser.name.length >= 3 && newUser.password.length >= 8 && newUser.passwordRepeat == newUser.password
+        && newUser.email
+    ) {
+        console.log("Kayıt Başarılı");
+        res.render('user/home', { newUser });
+    } else {
+        console.log('hata');
+        console.log(newUser)
+    }
+
 })
+
+
+router.get("/categories", userController.categoryList)
 
 router.get("/my-cart", (req, res) => {
     res.render('user/my_cart');

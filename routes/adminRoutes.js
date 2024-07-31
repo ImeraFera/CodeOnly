@@ -4,6 +4,17 @@ let activePage = {
     name: "",
 };
 
+router.get("/following", (req, res) => {
+    activePage.name = "following";
+    res.render('admin/following', { activePage });
+})
+
+router.get("/to-do", (req, res) => {
+    activePage.name = "to-do";
+    res.render('admin/to-do', { activePage });
+})
+
+
 router.get("/profile-settings", (req, res) => {
     activePage.name = "profile-settings";
     res.render('admin/profile-settings', { activePage });

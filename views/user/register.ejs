@@ -6,6 +6,7 @@
     </head>
     <body>
         <section class>
+
             <div class="container register-container py-5">
                 <div
                     class="row d-flex justify-content-center align-items-center ">
@@ -20,10 +21,19 @@
                                         class="fw-bold mb-2 text-uppercase">register</h2>
                                     <p class="text-white-50 mb-5">Please enter
                                         your informations!</p>
-                                    <form action>
+                                    <form action method="post">
                                         <div data-mdb-input-init
                                             class="form-outline form-white mb-2">
-                                            <input type="email" id="typeEmailX"
+                                            <input type="text" id="name"
+                                                name="name"
+                                                class="form-control  bg-dark text-light" />
+                                            <label class="form-label"
+                                                for="typeEmailX">Name</label>
+                                        </div>
+                                        <div data-mdb-input-init
+                                            class="form-outline form-white mb-2">
+                                            <input type="email" id="email"
+                                                name="email"
                                                 class="form-control  bg-dark text-light" />
                                             <label class="form-label"
                                                 for="typeEmailX">Email</label>
@@ -32,7 +42,8 @@
                                         <div data-mdb-input-init
                                             class="form-outline form-white mb-2">
                                             <input type="password"
-                                                id="typePasswordX"
+                                                id="password"
+                                                name="password"
                                                 class="form-control bg-dark text-light" />
                                             <label class="form-label"
                                                 for="typePasswordX">Password</label>
@@ -41,7 +52,8 @@
                                         <div data-mdb-input-init
                                             class="form-outline form-white mb-2">
                                             <input type="password"
-                                                id="typePasswordX"
+                                                id="passwordRepeat"
+                                                name="passwordRepeat"
                                                 class="form-control bg-dark text-light" />
                                             <label class="form-label"
                                                 for="typePasswordX">Repeat
