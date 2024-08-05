@@ -3,11 +3,42 @@
     <head>
         <%- include('../partials/header.ejs') %>
         <link rel="stylesheet" href="/static/css/register.css">
+
     </head>
     <body>
-        <section class>
+        <%- include('../partials/navbar.ejs') %>
 
-            <div class="container register-container py-5">
+        <section class>
+            <div class="container register-container py-3">
+                <% if (messages.error) { %>
+                <script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            background: '#00171F',
+                            color: 'white',
+                            confirmButtonColor: '#36AAA6',
+                            text: '<%= messages.error %>'
+                        });
+                    </script>
+                <% } %>
+
+                <% if (messages.success) { %>
+                <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            background: '#00171F',
+                            color: 'white',
+                            confirmButtonColor: '#36AAA6',
+                            text: '<%= messages.success %>'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                    window.location.href = '/login';
+                            }
+                        });
+                    </script>
+                <% } %>
                 <div
                     class="row d-flex justify-content-center align-items-center ">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">

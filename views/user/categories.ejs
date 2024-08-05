@@ -12,17 +12,17 @@
                 <div class="col-md-12">
                     <div class="card text-center custom-header-card">
                         <div class="card-header">
-                            <h1>Category List</h1>
+                            <h2>Category List</h2>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row p-5 align-items-center justify-content-center">
-
-                <% for( let index = 0; index < categories.length; index++ ) { %>
-                <%- include('../partials/category-card.ejs',categories[i]) %>
-                <% } %>
+            <div
+                class="row px-5 py-2 align-items-center justify-content-center">
+                <% categories.forEach(category => { %>
+                <%- include('../partials/category-card.ejs',{category}) %>
+                <% }) %>
 
             </div>
 

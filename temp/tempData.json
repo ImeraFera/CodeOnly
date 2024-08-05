@@ -1,56 +1,74 @@
 [
     {
         "name": "Python",
-        "img": "/static/img/python.svg",
+        "img": "python.svg",
         "numberOfProjects": 150,
-        "url": "/code-list/python"
+        "url": "python",
+        "id1": "python1",
+        "id2": "python2"
     },
     {
         "name": "JavaScript",
-        "img": "/static/img/javascript.svg",
+        "img": "javascript.svg",
         "numberOfProjects": 200,
-        "url": "/code-list/javascript"
+        "url": "javascript",
+        "id1": "javascript1",
+        "id2": "javascript2"
     },
     {
         "name": "Java",
-        "img": "/static/img/java.svg",
+        "img": "java.svg",
         "numberOfProjects": 180,
-        "url": "/code-list/java"
+        "url": "java",
+        "id1": "java1",
+        "id2": "java2"
     },
     {
         "name": "C#",
-        "img": "/static/img/csharp.svg",
+        "img": "csharp.svg",
         "numberOfProjects": 120,
-        "url": "/code-list/csharp"
+        "url": "csharp",
+        "id1": "csharp1",
+        "id2": "csharp2"
     },
     {
         "name": "PHP",
-        "img": "/static/img/php.svg",
+        "img": "php.svg",
         "numberOfProjects": 140,
-        "url": "/code-list/php"
+        "url": "php",
+        "id1": "php1",
+        "id2": "php2"
     },
     {
         "name": "React",
-        "img": "/static/img/react.svg",
+        "img": "react.svg",
         "numberOfProjects": 250,
-        "url": "/code-list/react"
+        "url": "react",
+        "id1": "react1",
+        "id2": "react2"
     },
     {
         "name": "MySQL",
-        "img": "/static/img/mysql.svg",
+        "img": "mysql.svg",
         "numberOfProjects": 100,
-        "url": "/code-list/mysql"
+        "url": "mysql",
+        "id1": "mysql1",
+        "id2": "mysql2"
     },
     {
         "name": "HTML",
-        "img": "/static/img/html.svg",
+        "img": "html.svg",
         "numberOfProjects": 130,
-        "url": "/code-list/html"
+        "url": "html",
+        "id1": "html1",
+        "id2": "html2"
     },
     {
         "name": "CSS",
-        "img": "/static/img/css.svg",
+        "img": "css.svg",
         "numberOfProjects": 110,
-        "url": "/code-list/css"
+        "url": "css",
+        "id1": "css1",
+        "id2": "css2"
     }
 ]

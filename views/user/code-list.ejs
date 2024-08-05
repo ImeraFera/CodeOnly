@@ -12,12 +12,14 @@
                 <div class="col-md-12">
                     <div class="card text-center custom-header-card">
                         <div class="card-header">
-                            <h1>Code List For <%= progLang.title %></h1>
+                            <h2>
+                                Code List For <%= projects[0].category.name %>
+                            </h2>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row p-3 ">
+            <div class="row px-5 py-2 ">
                 <div class="col-md-3">
                     <div class="container">
                         <div class="card filters-card">
@@ -89,13 +91,13 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <% for (let index = 0; index <
-                                    filteredCodes.length; index++) { %>
-                                    <% let code = filteredCodes[index]; %>
+
+                                    <% projects.forEach(project => { %>
                                     <%-
                                     include('../partials/code-list-card.ejs', {
-                                    code: code }) %>
-                                    <% } %>
+                                    project }) %>
+                                    <% }) %>
+
                                 </div>
 
                             </div>

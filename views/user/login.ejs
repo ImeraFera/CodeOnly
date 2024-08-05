@@ -5,8 +5,39 @@
         <link rel="stylesheet" href="/static/css/login.css">
     </head>
     <body>
+
+        <%- include('../partials/navbar.ejs') %>
         <section class>
             <div class="container  py-5">
+                <% if (messages.error) { %>
+                <script>
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                background: '#00171F',
+                                color: 'white',
+                                confirmButtonColor: '#36AAA6',
+                                text: '<%= messages.error %>'
+                            });
+                        </script>
+                <% } %>
+
+                <% if (messages.success) { %>
+                <script>
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                background: '#00171F',
+                                color: 'white',
+                                confirmButtonColor: '#36AAA6',
+                                text: '<%= messages.success %>'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                        window.location.href = '/';
+                                }
+                            });
+                        </script>
+                <% } %>
                 <div
                     class="row d-flex justify-content-center align-items-center ">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -14,48 +45,53 @@
                             style="border-radius: 1rem;">
                             <div class="card-body p-5 text-center">
                                 <div class="mb-md-5 mt-md-4 pb-5">
-                                    <h2
-                                        class="fw-bold mb-2 text-uppercase">Login</h2>
-                                    <p class="text-white-75 mb-5">Please enter
-                                        your
-                                        email and password!</p>
+                                    <form action method="post">
 
-                                    <div data-mdb-input-init
-                                        class="form-outline form-white mb-4">
-                                        <input type="email" id="typeEmailX"
-                                            class="form-control  bg-dark text-light" />
-                                        <label class="form-label"
-                                            for="typeEmailX">Email</label>
-                                    </div>
+                                        <h2
+                                            class="fw-bold mb-2 text-uppercase">Login</h2>
+                                        <p class="text-white-75 mb-5">Please
+                                            enter
+                                            your
+                                            email and password!</p>
 
-                                    <div data-mdb-input-init
-                                        class="form-outline form-white ">
-                                        <input type="password"
-                                            id="typePasswordX"
-                                            class="form-control bg-dark text-light" />
-                                        <label class="form-label"
-                                            for="typePasswordX">Password</label>
-                                    </div>
+                                        <div data-mdb-input-init
+                                            class="form-outline form-white mb-4">
+                                            <input type="email" id="email"
+                                                name="email"
+                                                class="form-control  bg-dark text-light" />
+                                            <label class="form-label"
+                                                for="typeEmailX">Email</label>
+                                        </div>
 
-                                    <p class="small  pb-lg-2"><a
-                                            class="text-light fs-6"
-                                            href="#!">Forgot
-                                            password?</a></p>
+                                        <div data-mdb-input-init
+                                            class="form-outline form-white ">
+                                            <input type="password"
+                                                id="password" name="password"
+                                                class="form-control bg-dark text-light" />
+                                            <label class="form-label"
+                                                for="typePasswordX">Password</label>
+                                        </div>
 
-                                    <button data-mdb-button-init
-                                        data-mdb-ripple-init
-                                        class="btn login-button btn-lg px-5"
-                                        type="submit">Login</button>
+                                        <p class="small  pb-lg-2"><a
+                                                class="text-light fs-6"
+                                                href="#!">Forgot
+                                                password?</a></p>
 
-                                    <div
-                                        class="d-flex justify-content-center text-center  pt-1">
-                                        <a href="#!" class="text-white"><i
-                                                class="fab fa-facebook-f fa-lg"></i></a>
-                                        <a href="#!" class="text-white"><i
-                                                class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                                        <a href="#!" class="text-white"><i
-                                                class="fab fa-google fa-lg"></i></a>
-                                    </div>
+                                        <button data-mdb-button-init
+                                            data-mdb-ripple-init
+                                            class="btn login-button btn-lg px-5"
+                                            type="submit">Login</button>
+
+                                        <div
+                                            class="d-flex justify-content-center text-center  pt-1">
+                                            <a href="#!" class="text-white"><i
+                                                    class="fab fa-facebook-f fa-lg"></i></a>
+                                            <a href="#!" class="text-white"><i
+                                                    class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                                            <a href="#!" class="text-white"><i
+                                                    class="fab fa-google fa-lg"></i></a>
+                                        </div>
+                                    </form>
 
                                 </div>
 

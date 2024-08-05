@@ -7,7 +7,7 @@
     </head>
     <body>
 
-        <%- include('../partials/navbar.ejs', ) %>
+        <%- include('../partials/navbar.ejs') %>
 
         <div class="container-fluid text-light">
             <div class="container  p-3">
@@ -39,24 +39,26 @@
                             <h4>Do You Want To Add Code For Other
                                 Programmers ?</h4>
                         </div>
+                        <% if (!isAuth) { %>
                         <div class="row text-center mt-3">
                             <div class="col-md-12">
                                 <div>
-                                    <button type="button"
+                                    <a href="/login"
                                         class="btn home-account-button me-1">
                                         Login
-                                    </button>
+                                    </a>
                                     <label for>Or</label>
-                                    <button type="button"
+                                    <a href="/register"
                                         class="btn   home-account-button ms-1">
                                         Register
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row text-center  mt-3">
                             <h6>And Starting To Share Your Codes!</h6>
                         </div>
+                        <% } %>
                     </div>
                     <div class="col-md-3 my-3">
                         <%- include('../partials/popular-codes-card.ejs') %>
@@ -75,29 +77,12 @@
                     <div class="card-body">
                         <div
                             class="row justify-content-around align-items-center">
-                            <div class="col-md-3  my-1">
-                                <a href="http://">
-                                    <div
-                                        class="score-card playing ">
-
-                                        <div class="wave wave-second"></div>
-                                        <div class="wave wave-second"></div>
-                                        <div class="wave wave-second"></div>
-
-                                        <div class="infotop fw-bold">
-                                            <img src="/static/img/1.jpg"
-                                                class="rounded-circle mb-3"
-                                                width="100px"
-                                                height="100px"
-                                                alt>
-                                            <br>ImeraFeram<br>
-                                            <div
-                                                class="name">1232</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3  my-1">
+                            <% topUsers.forEach(user => { %>
+                            <%-
+                            include('../partials/scoreboard-card.ejs', {user})
+                            %>
+                            <% }) %>
+                            <!-- <div class="col-md-3  my-1">
                                 <a href="http://">
                                     <div
                                         class="score-card playing  ">
@@ -143,7 +128,7 @@
                                     </div>
                                 </a>
 
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>

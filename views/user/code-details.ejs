@@ -8,61 +8,105 @@
     <body>
         <%- include('../partials/navbar.ejs') %>
         <div class="container-fluid text-light">
+            <% if (messages.error) { %>
+            <script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            background: '#00171F',
+                            color: 'white',
+                            confirmButtonColor: '#36AAA6',
+                            text: '<%= messages.error %>'
+                        });
+
+                    </script>
+            <% } %>
+
+            <% if (messages.success) { %>
+            <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            background: '#00171F',
+                            color: 'white',
+                            confirmButtonColor: '#36AAA6',
+                            text: '<%= messages.success %>'
+                        });
+                    </script>
+            <% } %>
             <div class="row justify-content-center p-3 align-items-center">
                 <div class="col-md-12">
                     <div class="card text-center custom-header-card">
                         <div class="card-header">
-                            <h1> <%= codeDetails.title %></h1>
+                            <h2> <%= project.title %> </h2>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row p-3 justify-content-center align-items-center">
+            <div
+                class="row px-5 py-2 justify-content-center align-items-center">
                 <div class="col-md-9 mb-3">
                     <div class="container ">
                         <div class="card code-details-card ">
                             <div
                                 class="card-header d-flex justify-content-between">
-                                <label class="fs-5 fw-bold">
-                                    Author: <%= codeDetails.author %>
-                                </label>
-                                <label class="fs-6" for><%=
-                                    codeDetails.date %></label>
+                                <div
+                                    class="d-flex justify-content-center align-items-center">
+                                    <img
+                                        src="/static/img/<%= project.author.img %>"
+                                        width="50px"
+                                        height="50px"
+                                        class="rounded-circle" alt>
+                                    <a
+                                        href="/user/<%= project.author.id %>"
+                                        class="nav-link fs-6 ms-3 fw-bold">
+                                        <%= project.author.name %>
+                                    </a>
+
+                                </div>
+                                <div
+                                    class="d-flex justify-content-center align-items-center">
+                                    <label class="fs-6 fw-bold" for>
+                                        <%= project.releaseDate %>
+                                    </label>
+                                </div>
+
                             </div>
                             <div class="card-body">
-                                <p>Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. A veritatis, cum expedita
-                                    suscipit consequatur reiciendis voluptatem
-                                    voluptate ex eaque corrupti iste dicta totam
-                                    voluptas, commodi eos laudantium eligendi
-                                    quidem illum.</p>
-                                <p>Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. A veritatis, cum expedita
-                                    suscipit consequatur reiciendis voluptatem
-                                    voluptate ex eaque corrupti iste dicta totam
-                                    voluptas, commodi eos laudantium eligendi
-                                    quidem illum.</p>
-                                <p>Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. A veritatis, cum expedita
-                                    suscipit consequatur reiciendis voluptatem
-                                    voluptate ex eaque corrupti iste dicta totam
-                                    voluptas, commodi eos laudantium eligendi
-                                    quidem illum.</p>
+                                <%= project.content %>
                             </div>
                             <div class="card-footer d-flex">
+                                <div class=" my-auto me-auto ">
 
-                                <button type="button"
-                                    class="btn card-footer-btn ms-auto">
-                                    <img src="/static/img/like.svg"
-                                        width="30px" alt
-                                        srcset>
-                                </button>
-                                <button type="button"
-                                    class="btn card-footer-btn mx-2">
-                                    <img src="/static/img/save.svg"
-                                        width="30px"
-                                        srcset>
-                                </button>
+                                    <% project.keywords.forEach(keyword => { %>
+                                    <span
+                                        class="badge rounded-pill text-bg-light"><%=
+                                        keyword %></span>
+
+                                    <% }) %>
+
+                                </div>
+                                <form class="d-flex ms-auto"
+                                    action="/postLikeProject/<%= project.id %>"
+                                    method="post">
+                                    <button type="submit"
+                                        class="btn card-footer-btn ms-auto">
+                                        <% if (user) { %>
+                                        <img src="/static/img/like.svg"
+                                            width="20px">
+                                        <% } else{ %>
+                                        <span class="text-light">Login To
+                                            Like</span>
+                                        <% } %>
+                                    </button>
+                                    <button type="button"
+                                        class="btn card-footer-btn ms-3">
+                                        <img src="/static/img/save.svg"
+                                            width="20px"
+                                            srcset>
+                                    </button>
+                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -77,17 +121,13 @@
                             </div>
                             <ul class="list-group  list-group-flush">
                                 <li
-                                    class="list-group-item"><a
-                                        class="nav-link custom-link"
-                                        href>qwewq</a></li>
-                                <li
-                                    class="list-group-item"><a
-                                        class="nav-link custom-link"
-                                        href>qwewq</a></li>
-                                <li
-                                    class="list-group-item"><a
-                                        class="nav-link custom-link"
-                                        href>qwewq</a></li>
+                                    class="list-group-item">
+                                    <a class="nav-link custom-link"
+                                        href="/code-details/<%= project.id %>">
+                                        <%= project.title %>
+                                    </a>
+                                </li>
+
                             </ul>
                             <div class="card-header text-center ">
                                 <label for class="fs-5">
@@ -113,11 +153,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row p-3">
+            <div class="row px-5 py-2">
                 <div class="col-md-12">
                     <div class="card comments-card ">
                         <div class="card-header text-center">
-                            <h1> Comments</h1>
+                            <h2> Comments</h2>
                         </div>
                         <div
                             class="card-body  d-flex align-items-center">
@@ -126,15 +166,19 @@
                                 <div
                                     class="row justify-content-center align-items-center">
                                     <div class="col-md-4 text-center mb-3">
-                                        <form action>
+                                        <form
+                                            action="/postComment/<%= project.id %>"
+                                            method="post">
                                             <div class="input-group mb-3">
                                                 <span
                                                     class="input-group-text"></span>
                                                 <input type="text"
+                                                    id="name"
+                                                    name="name"
+                                                    readonly
+                                                    disabled
+                                                    value="<%= (user) ? user.name : null %>"
                                                     placeholder="Name"
-                                                    class="form-control">
-                                                <input type="text"
-                                                    placeholder="Last Name"
                                                     class="form-control">
                                                 <span
                                                     class="input-group-text"></span>
@@ -144,6 +188,9 @@
                                                     id="basic-addon1"></span>
                                                 <input type="text"
                                                     class="form-control"
+                                                    readonly
+                                                    value="<%= (user) ? user.email : null %>"
+                                                    disabled
                                                     placeholder="Email">
                                                 <span
                                                     class="input-group-text"></span>
@@ -151,46 +198,52 @@
                                             <div class="input-group mb-3">
                                                 <span
                                                     class="input-group-text"></span>
-
                                                 <textarea class="form-control"
                                                     placeholder="Comment"
+                                                    id="content" name="content"
+                                                    <%=(user) ? '' : 'disabled'
+                                                    %>
                                                     maxlength="300"
                                                     rows="3"></textarea>
                                                 <span
                                                     class="input-group-text"></span>
                                             </div>
                                             <button class="btn btn-lg send-btn"
-                                                type="submit">Send</button>
+                                                type="submit"><%= (user) ?
+                                                "Send" : "Login To Send Comment"
+                                                %></button>
                                         </form>
                                     </div>
                                     <div class="col-md-8">
                                         <div
                                             class="row comments-row align-items-center">
+                                            <%
+                                            project.comments.forEach(comment =>
+                                            { %>
                                             <div
                                                 class="col-md-6 mb-3">
                                                 <div class="card comment-card">
                                                     <div
                                                         class="card-header   d-flex">
                                                         <label
-                                                            class="card-title text-center fs-5 me-auto">asdas</label>
+                                                            class="card-title text-center fs-5 me-auto">
+                                                            <%=
+                                                            comment.whoSend.name
+                                                            %>
+                                                        </label>
                                                         <label
                                                             class="fs-6">
-                                                            12.12.1222
+                                                            <%= comment.date %>
                                                         </label>
                                                     </div>
                                                     <div
                                                         class="card-body ">
                                                         <p
                                                             class="card-text">
-                                                            Lorem ipsum dolor
-                                                            sit amet,
-
-                                                            laoreet, nulla eget
-                                                            ultricies vehicula,
-                                                            nisl dui convallis
-                                                            turpis, vel
-                                                            efficitur dui nisl
-                                                            eget elit. Sed.</p>
+                                                            <%=
+                                                            comment.content
+                                                            %>
+                                                        </p>
                                                     </div>
                                                     <div
                                                         class="card-footer justify-content-between align-items-center d-flex">
@@ -212,22 +265,40 @@
                                                                         d="M14,8l.555-3.328a2.269,2.269,0,0,0-1.264-2.486,2.247,2.247,0,0,0-2.9,1.037L8,8V22H22l2-11V8Z" />
                                                                 </svg>
                                                                 <label
-                                                                    class="fs-6 text-light like-count">22232322</label>
+                                                                    class="fs-6 text-light like-count ">
+                                                                    <%=
+                                                                    comment.whoLikes.length
+                                                                    %>
+
+                                                                </label>
                                                             </div>
 
                                                         </div>
+                                                        <form
+                                                            action="/postLikeComment/<%= comment.id %>/<%= project.id %>"
+                                                            method="post">
+                                                            <button
+                                                                type="submit"
+                                                                class="btn card-footer-btn ms-auto">
+                                                                <% if (user) {
+                                                                %>
+                                                                <img
+                                                                    src="/static/img/like.svg"
+                                                                    width="20px">
+                                                                <% } else{ %>
+                                                                <span
+                                                                    class="text-light">Login
+                                                                    To
+                                                                    Like</span>
+                                                                <% } %>
+                                                            </button>
+                                                        </form>
 
-                                                        <button type="button"
-                                                            class="btn card-footer-btn">
-                                                            <img
-                                                                src="/static/img/like.svg"
-                                                                width="20px"
-                                                                alt="Like Icon">
-                                                        </button>
                                                     </div>
 
                                                 </div>
                                             </div>
+                                            <% }) %>
 
                                         </div>
 
@@ -248,6 +319,11 @@
         </div>
         <script
             src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+                document.getElementById('likeBtn').addEventListener('click', ()=>{
+                    
+                })
+            </script>
         <%- include('../partials/footer.ejs') %>
 
     </body>

@@ -3,32 +3,32 @@
         class="card code-card">
         <div
             class="card-header d-flex justify-content-between align-items-center text-light">
-            <label class="fs-5 fw-bold">
-                <%= code.title %>
+            <label class="fs-6 fw-bold">
+                <%= project.title %>
             </label>
             <label
                 class="fs-6 fw-bold">
-                <%= code.date %>
+                <%= project.releaseDate %>
             </label>
         </div>
         <div class="card-body">
-            <p> <%= code.desc %>
+            <p> <%= project.desc %>
             </p>
             <div class>
-                <% for( let i = 0; i < code.keys.length;
-                i++ ) { %>
+                <% project.keywords.forEach(keyword => { %>
                 <span
-                    class="badge rounded-pill text-bg-light"><%=
-                    code.keys[i] %>
+                    class="badge rounded-pill text-bg-light">
+                    <%= keyword %>
                 </span>
-                <% } %>
+                <% }) %>
+
             </div>
         </div>
         <div
-            class="card-footer d-flex justify-content-between">
-            <label for class="fs-5 text-light fw-bold"><%= code.author
+            class="card-footer d-flex align-items-center justify-content-between">
+            <label for class="fs-6 text-light fw-bold"><%= project.author.name
                 %></label>
-            <a href="/code-details/<%= code.id %>"
+            <a href="/code-details/<%= project.id %>"
                 class="btn read-btn  mx-2">Read
                 the Code</a>
         </div>

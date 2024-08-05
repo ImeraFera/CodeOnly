@@ -11,13 +11,20 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bad-words": "^3.0.4",
+    "bcrypt": "^5.1.1",
     "bootstrap": "^5.3.3",
     "ckeditor5": "^42.0.1",
+    "codeonly": "file:",
+    "connect-flash": "^0.1.1",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "joi": "^17.13.3",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.2",
     "mysql2": "^3.11.0",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "sweetalert2": "^11.6.13"
   }
 }

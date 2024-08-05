@@ -67,22 +67,50 @@
                         </a>
                         <ul
                             class="dropdown-menu text-center dropdown-menu-lg-end  custom-dropdown">
-                            <li><a class="dropdown-item"
+                            <% if (!isAuth ) { %>
+                            <li>
+                                <a class="dropdown-item"
                                     href="/login"><i
-                                        class="fi fi-ss-check-circle"></i><span>
-                                        Login</span></a></li>
-                            <li><a class="dropdown-item"
+                                        class="fi fi-ss-check-circle">
+                                    </i>
+                                    <span>
+                                        Login</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
                                     href="/register"><i
                                         class="fi fi-sr-user-add"></i><span>
-                                        Register</span></a></li>
-                            <li><a class="dropdown-item" href="#"><i
-                                        class="fi fi-ss-user-skill-gear"></i>
+                                        Register</span>
+                                </a>
+                            </li>
+                            <% } %>
+                            <% if (isAuth) { %>
+                            <li>
+                                <a class="dropdown-item"
+                                    href="/my-profile"><i
+                                        class="fi fi-ss-user-skill-gear">
+                                    </i>
                                     <span> My Account</span>
-                                </a></li>
-                            <li><a class="dropdown-item"
-                                    href="/logout"><i
-                                        class="fi fi-sr-circle-xmark"></i><span>
-                                        Logout</span></a></li>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                    href="/logout">
+                                    <i
+                                        class="fi fi-sr-circle-xmark">
+                                    </i>
+                                    <span>
+                                        Logout
+                                    </span>
+                                </a>
+                            </li>
+                            <hr class="dropdown-divider">
+                            <li class="text-center">
+                                <label><%= user.name %></label>
+                            </li>
+                            <% } %>
                         </ul>
 
                     </li>
