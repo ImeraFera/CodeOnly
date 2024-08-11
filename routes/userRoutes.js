@@ -7,7 +7,7 @@ const { message } = require('../middlewares/messages');
 
 
 // * Controllers
-const { getProject, getCodeList, getCategories, getHome, getMyProfile, postComment, postLikeProject, postLikeComment } = require('../controllers/user');
+const { getProject, getCodeList, getCategories, getHome, getMyProfile, postComment, postLikeProject, postLikeComment, get404 } = require('../controllers/user');
 const { getRegister, postRegister, postLogin, getLogin, getLogout } = require('../controllers/auth');
 const { isAuth } = require('../middlewares/auth');
 const { blockedPage } = require('../middlewares/blockedPage');
@@ -55,6 +55,9 @@ router.get("/categories", getCategories)
 
 // * Home Page
 router.get("/", getHome)
+
+// * 404 Page
+router.get("/404", get404)
 
 
 

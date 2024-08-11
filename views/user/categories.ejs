@@ -3,10 +3,10 @@
     <head>
         <%- include('../partials/header.ejs') %>
         <link rel="stylesheet" href="/static/css/categories.css">
+
     </head>
     <body>
         <%- include('../partials/navbar.ejs') %>
-
         <div class="container-fluid text-light">
             <div class="row justify-content-center p-3 align-items-center">
                 <div class="col-md-12">
@@ -17,19 +17,14 @@
                     </div>
                 </div>
             </div>
-
             <div
                 class="row px-5 py-2 align-items-center justify-content-center">
                 <% categories.forEach(category => { %>
                 <%- include('../partials/category-card.ejs',{category}) %>
                 <% }) %>
-
             </div>
-
         </div>
-
         <%- include('../partials/footer.ejs') %>
-
         <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script type="module">
             import dontHover from './dontHover.js';

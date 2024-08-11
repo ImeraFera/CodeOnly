@@ -5,7 +5,7 @@ const Comment = require('../models/comment');
 const Filter = require('bad-words');
 const filter = new Filter();
 const Joi = require('joi');
-
+const { default: mongoose } = require('mongoose');
 var sendCommentPoint = 5;
 var likeCommentPoint = 7;
 var likeProjectPoint = 10;
@@ -228,11 +228,14 @@ exports.getHome = async (req, res) => {
 
         const topUsers = await User.find().sort({ score: -1 }).limit(3);
 
-        console.log(topUsers)
+        // console.log(topUsers)
 
-        topUsers[0].placed = 'first';
-        topUsers[1].placed = 'second';
-        topUsers[2].placed = 'third';
+        if (topUsers.length > 3) {
+            topUsers[0].placed = 'first';
+            topUsers[1].placed = 'second';
+            topUsers[2].placed = 'third';
+        }
+
 
         function shiftRight(arr) {
             if (arr.length > 0) {
@@ -243,13 +246,15 @@ exports.getHome = async (req, res) => {
 
         shiftRight(topUsers);
 
-
-        return res.render('user/home', { topUsers });
+        const projects = await Project.find().sort({ date: -1 }).limit(4);
+        const randomProjects = await Project.aggregate([
+            { $sample: { size: 10 } }
+        ]);
+        return res.render('user/home', { topUsers, projects, randomProjects });
 
     } catch (error) {
         console.log(error)
     }
-
 
 }
 
@@ -269,20 +274,37 @@ exports.getCodeList = async (req, res) => {
             url: category
         });
 
-        const projects = await Project.find({ category: findedCategory._id }).populate('category').populate({
-            path: 'author',
-            select: 'name'
-        })
-        if (projects.length == 0 || category == null) {
+        if (!findedCategory) {
+            return res.render('errors/404', { message: 'This Category Does Not Exist' });
+        }
+
+        if (findedCategory.numberOfProjects == 0) {
+            return res.render('errors/404', { message: 'This Category Has No Projects' });
+        }
+
+
+        const projects = await Project.find({ category: findedCategory._id })
+            .populate('category').populate({
+                path: 'author',
+                select: 'name'
+            })
+
+
+        if (projects.length == 0) {
             res.redirect('/');
             return;
         }
-        // console.log(projects)
+
         res.render('user/code-list', { projects });
+
 
     } catch (error) {
         console.log(error)
         return;
     }
 
+}
+
+exports.get404 = (req, res) => {
+    res.render('errors/404');
 }

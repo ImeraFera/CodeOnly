@@ -38,7 +38,19 @@
                         <div class="row text-center">
                             <h4>Do You Want To Add Code For Other
                                 Programmers ?</h4>
+
                         </div>
+                        <% if (isAuth) { %>
+                        <div class="row text-center mt-3">
+                            <div class="col-md-12 text-center">
+                                <a href="/login"
+                                    class="btn home-account-button me-1">
+                                    Share Code
+                                </a>
+                            </div>
+                        </div>
+
+                        <% } %>
                         <% if (!isAuth) { %>
                         <div class="row text-center mt-3">
                             <div class="col-md-12">
@@ -61,15 +73,28 @@
                         <% } %>
                     </div>
                     <div class="col-md-3 my-3">
-                        <%- include('../partials/popular-codes-card.ejs') %>
+                        <div class="card  popular-categories-card">
+                            <div class="card-header text-center"
+                                style="background-color: #3FAAA6;">
+                                <h5>Random Projects</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <% randomProjects.forEach(project => { %>
+                                <%-
+                                include('../partials/random-project-card.ejs',
+                                {project}) %>
+                                <% }) %>
+
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
             </div>
             <div class="container my-3 p-0">
                 <div class="card "
                     style="background-color: transparent;
-                    border: 2px solid #36AAA6;
-                    ">
+                    border: 2px solid #36AAA6; ">
                     <div
                         class="card-header text-center text-light custom-container">
                         <h3>Scoreboard</h3>
@@ -82,53 +107,6 @@
                             include('../partials/scoreboard-card.ejs', {user})
                             %>
                             <% }) %>
-                            <!-- <div class="col-md-3  my-1">
-                                <a href="http://">
-                                    <div
-                                        class="score-card playing  ">
-
-                                        <div class="wave wave-first"></div>
-                                        <div class="wave wave-first"></div>
-                                        <div class="wave wave-first"></div>
-
-                                        <div class="infotop fw-bold">
-                                            <img src="/static/img/3.jpg"
-                                                class="rounded-circle mb-3"
-                                                width="100px"
-                                                height="100px"
-                                                alt>
-                                            <br>ImeraFeram<br>
-                                            <div
-                                                class="name">1232</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-md-3  my-1">
-                                <a href="http://">
-
-                                    <div
-                                        class="score-card playing ">
-
-                                        <div class="wave wave-third"></div>
-                                        <div class="wave wave-third"></div>
-                                        <div class="wave wave-third"></div>
-
-                                        <div class="infotop fw-bold">
-                                            <img src="/static/img/2.jpg"
-                                                class="rounded-circle mb-3"
-                                                width="100px"
-                                                height="100px"
-                                                alt>
-                                            <br>ImeraFeram<br>
-                                            <div
-                                                class="name">1232</div>
-                                        </div>
-                                    </div>
-                                </a>
-
-                            </div> -->
 
                         </div>
                     </div>
@@ -144,21 +122,13 @@
                         class="card-header text-center text-light custom-container">
                         <h3>Recently Codes</h3>
                     </div>
-                    <div class="card-body"> <div class="row">
-
-                            <div class="col-md-3">
-                                <%- include('../partials/code-card.ejs') %>
-                            </div>
-                            <div class="col-md-3">
-                                <%- include('../partials/code-card.ejs') %>
-                            </div>
-                            <div class="col-md-3">
-                                <%- include('../partials/code-card.ejs') %>
-                            </div>
-                            <div class="col-md-3">
-                                <%- include('../partials/code-card.ejs') %>
-                            </div>
-
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <% projects.forEach(project => { %>
+                            <%-
+                            include('../partials/recently-code-card.ejs',{project})
+                            %>
+                            <% }) %>
                         </div>
 
                     </div>

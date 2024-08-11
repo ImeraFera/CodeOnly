@@ -53,16 +53,20 @@ exports.postLogin = async (req, res) => {
 
         const user = await User.findOne({ email: email })
         const isMatch = await bcrypt.compare(password, user.password)
-
+        const isBanned = user.isBanned;
+        if (isBanned) {
+            req.flash('error', 'You are banned! If you have questions, contact us.');
+            return res.redirect('/login');
+        }
         if (isMatch) {
             req.session.isAuth = true;
             req.session.user = user;
 
             const url = req.query.returnUrl || "/";
-            res.redirect(url);
+            return res.redirect(url);
         } else {
             req.flash('error', 'Invalid credentials');
-            res.redirect('/login');
+            return res.redirect('/login');
         }
 
     } catch (error) {
@@ -128,6 +132,7 @@ exports.postRegister = async (req, res) => {
             bio: null,
             img: null,
             score: 0,
+            placed: "",
             socialLinks: [],
             role: null,
             projects: [],
