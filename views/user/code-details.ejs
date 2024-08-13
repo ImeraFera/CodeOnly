@@ -3,7 +3,7 @@
     <head>
         <%- include('../partials/header.ejs') %>
         <link rel="stylesheet" href="/static/css/code-details.css">
-
+        <link rel="stylesheet" href="/static/prism/prism.css">
     </head>
     <body>
         <%- include('../partials/navbar.ejs') %>
@@ -73,7 +73,7 @@
 
                             </div>
                             <div class="card-body">
-                                <%= project.content %>
+                                <%- project.content %>
                             </div>
                             <div class="card-footer d-flex">
                                 <div class=" my-auto me-auto ">
@@ -120,6 +120,8 @@
                                 </label>
                             </div>
                             <ul class="list-group  list-group-flush">
+
+                                <% moreProjects.forEach(project => { %>
                                 <li
                                     class="list-group-item">
                                     <a class="nav-link custom-link"
@@ -127,6 +129,7 @@
                                         <%= project.title %>
                                     </a>
                                 </li>
+                                <% }) %>
 
                             </ul>
                             <div class="card-header text-center ">
@@ -319,6 +322,7 @@
         </div>
         <script
             src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/prism/prism.js"></script>
 
         <%- include('../partials/footer.ejs') %>
 

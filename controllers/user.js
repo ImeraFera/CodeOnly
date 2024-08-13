@@ -5,7 +5,6 @@ const Comment = require('../models/comment');
 const Filter = require('bad-words');
 const filter = new Filter();
 const Joi = require('joi');
-const { default: mongoose } = require('mongoose');
 var sendCommentPoint = 5;
 var likeCommentPoint = 7;
 var likeProjectPoint = 10;
@@ -138,7 +137,6 @@ exports.getLikeComment = async (req, res) => {
     res.redirect('/code-details' + req.params.project_id)
 }
 
-
 exports.postLikeComment = async (req, res) => {
 
     const commentId = req.params.comment_id;
@@ -183,7 +181,6 @@ exports.postLikeComment = async (req, res) => {
 
 }
 
-
 exports.getProject = async (req, res) => {
 
     const projectId = req.params.project_id;
@@ -205,6 +202,13 @@ exports.getProject = async (req, res) => {
                 select: 'name'
             })
 
+        const moreProjects = await Project.find({
+            _id: { $ne: projectId },
+            isActive: true,
+            releaseDate: { $lte: new Date().toISOString().split('T')[0] }
+        }).limit(5);
+
+
         let user = null;
         if (res.locals.user) {
             user = res.locals.user;
@@ -213,7 +217,7 @@ exports.getProject = async (req, res) => {
         if (project.author.img == null) {
             project.author.img = 'user_default.png'
         }
-        return res.render('user/code-details', { project, user });
+        return res.render('user/code-details', { project, user, moreProjects });
     } catch (error) {
         console.log(error)
         // res.redirect('/');
@@ -282,12 +286,15 @@ exports.getCodeList = async (req, res) => {
             return res.render('errors/404', { message: 'This Category Has No Projects' });
         }
 
+        const projects = await Project.find({
+            category: findedCategory._id,
+            isActive: true,
+            releaseDate: { $lte: new Date().toISOString().split('T')[0] }
 
-        const projects = await Project.find({ category: findedCategory._id })
-            .populate('category').populate({
-                path: 'author',
-                select: 'name'
-            })
+        }).populate('category').populate({
+            path: 'author',
+            select: 'name'
+        })
 
 
         if (projects.length == 0) {

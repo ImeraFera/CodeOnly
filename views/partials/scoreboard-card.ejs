@@ -1,0 +1,23 @@
+<div class="col-md-3  my-1">
+    <a href="/user/<%= user._id %>">
+        <div
+            class="score-card playing ">
+
+            <div class="wave wave-<%= user.placed %>"></div>
+            <div class="wave wave-<%= user.placed %>"></div>
+            <div class="wave wave-<%= user.placed %>"></div>
+
+            <div class="infotop fw-bold">
+                <img
+                    src="/static/img/<%= (user.img) ? user.img : 'user_default.png' %>"
+                    class="rounded-circle mb-3"
+                    width="100px"
+                    height="100px"
+                    alt>
+                <br><%= user.name %><br>
+                <div
+                    class="name"><%= user.score %></div>
+            </div>
+        </div>
+    </a>
+</div>

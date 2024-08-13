@@ -20,12 +20,13 @@
                         <div class="col-md-12  ">
                             <div
                                 class="container p-4  border border-bottom-0 border-2  border-primary ">
-                                <h6 class="mb-4 text-light">New Project
-                                    Settings</h6>
+                                <h6 class="mb-4 text-light">Edit Project
+                                </h6>
                                 <div class="form-floating mb-3">
                                     <input type="text"
                                         required
                                         id="title"
+                                        value="<%= project.title %>"
                                         name="title"
                                         class="form-control border border-2  border-primary bg-gray text-light"
                                         placeholder>
@@ -38,6 +39,7 @@
                                     <input type="text"
                                         required
                                         id="desc"
+                                        value="<%= project.desc %>"
                                         name="desc"
                                         class="form-control border border-2  border-primary bg-gray text-light"
                                         placeholder>
@@ -50,6 +52,7 @@
                                     <input type="text"
                                         required
                                         id="keywords"
+                                        value="<%= project.keywords %>"
                                         name="keywords"
                                         class="form-control border border-2  border-primary bg-gray text-light"
                                         placeholder>
@@ -63,11 +66,11 @@
                                         name="category"
                                         id="category"
                                         class="form-select border border-2  border-primary bg-gray text-light">
-                                        <option disabled selected>
-                                            Select Category
-                                        </option>
                                         <% categories.forEach(category => { %>
-                                        <option value="<%= category._id %>"><%=
+                                        <option <%=(category.id ===
+                                            project.category._id) ? 'selected' :
+                                            '' %> value="<%= category._id
+                                            %>"><%=
                                             category.name %></option>
                                         <% }) %>
                                     </select>
@@ -78,6 +81,7 @@
                                 <div class="form-floating mb-3 ">
                                     <input type="date" id="date" required
                                         name="date"
+                                        value="<%= project.releaseDate %>"
                                         class="form-control border border-2  border-primary bg-gray text-light"
                                         placeholder="Select a date">
                                     <label

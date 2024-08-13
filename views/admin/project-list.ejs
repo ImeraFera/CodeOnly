@@ -8,16 +8,10 @@
     <body>
         <div class="container-xxl position-relative  d-flex p-0">
 
-            <!-- Sidebar Start -->
             <%- include('../admin-partials/sidebar.ejs',{activePage}) %>
-            <!-- Sidebar End -->
 
-            <!-- Content Start -->
             <div class="content bg-dark">
-                <!-- Navbar Start -->
                 <%- include('../admin-partials/navbar.ejs') %>
-                <!-- Navbar End -->
-                <!-- Sale & Revenue Start -->
                 <div class="container-fluid pt-4 px-4">
                     <div class="row">
                         <div class="col-md-12">
@@ -73,75 +67,36 @@
                                                         Date</th>
                                                     <th
                                                         scope="col">Keywords</th>
-                                                    <th scope="col">Score</th>
+                                                    <th
+                                                        scope="col">Comments</th>
 
                                                     <th scope="col">Status</th>
                                                     <th
                                                         scope="col">Settings</th>
-
                                                 </tr>
                                             </thead>
                                             <tbody class="text-white">
-                                                <tr>
-                                                    <th scope="row">0</th>
-                                                    <td>John</td>
-                                                    <td>Doe</td>
-                                                    <td>Doe</td>
-                                                    <td>jhon@email.com</td>
-                                                    <td>USA,asd,gfdhgfd,sdsd,sad,ggfdgfd</td>
-                                                    <td>
-                                                        <svg id="Layer_1"
-                                                            viewBox="0 0 24 24"
-                                                            fill="lightgray"
-                                                            width="24"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            data-name="Layer 1">
-                                                            <path
-                                                                d="m5.868 15.583a8.938 8.938 0 0 1 -2.793-7.761 9 9 0 1 1 14.857 7.941 5.741 5.741 0 0 0 -1.594 2.237h-3.338v-7.184a3 3 0 0 0 2-2.816 1 1 0 0 0 -2 0 1 1 0 0 1 -2 0 1 1 0 0 0 -2 0 3 3 0 0 0 2 2.816v7.184h-3.437a6.839 6.839 0 0 0 -1.695-2.417zm2.132 4.417v.31a3.694 3.694 0 0 0 3.69 3.69h.62a3.694 3.694 0 0 0 3.69-3.69v-.31z" />
-                                                        </svg>
-                                                    </td>
-                                                    <td>
-                                                        <a href>
-                                                            <svg
-                                                                class="me-2"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                id="Bold"
-                                                                viewBox="0 0 24 24"
-                                                                width="24"
-                                                                fill="white">
-                                                                <path
-                                                                    d="M21,11.5V15H18a3,3,0,0,0-3,3v3H4.5A1.5,1.5,0,0,1,3,19.5V4.5A1.5,1.5,0,0,1,4.5,3h9A1.5,1.5,0,0,0,15,1.5h0A1.5,1.5,0,0,0,13.5,0h-9A4.5,4.5,0,0,0,0,4.5v15A4.5,4.5,0,0,0,4.5,24H16.484a4.5,4.5,0,0,0,3.181-1.317l3.017-3.017A4.5,4.5,0,0,0,24,16.485V11.5A1.5,1.5,0,0,0,22.5,10h0A1.5,1.5,0,0,0,21,11.5Z" />
-                                                                <path
-                                                                    d="M17.793,1.793l-12.5,12.5A1,1,0,0,0,5,15v3a1,1,0,0,0,1,1H9a1,1,0,0,0,.707-.293L22.038,6.376a3.379,3.379,0,0,0,.952-3.17A3.118,3.118,0,0,0,17.793,1.793Z" />
-                                                            </svg>
-                                                        </a>
-                                                        <a href>
-                                                            <svg
-                                                                class="ms-2"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                id="Layer_1"
-                                                                data-name="Layer 1"
-                                                                viewBox="0 0 24 24"
-                                                                fill="white"
-                                                                width="24">
-                                                                <path
-                                                                    d="M17,4V2a2,2,0,0,0-2-2H9A2,2,0,0,0,7,2V4H2V6H4V21a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V6h2V4ZM11,17H9V11h2Zm4,0H13V11h2ZM15,4H9V2h6Z" />
-                                                            </svg>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>John</td>
-                                                    <td>Doe</td>
-                                                    <td>jhon@email.com</td>
-                                                    <td>jhon@email.com</td>
 
-                                                    <td>USA</td>
+                                                <% projects.forEach((project,
+                                                index) => { %>
+                                                <tr>
+                                                    <th scope="row"><%= index +
+                                                        1 %></th>
+                                                    <td><%= project.title
+                                                        %></td>
+                                                    <td><%= project.category
+                                                        %></td>
+                                                    <td><%= project.releaseDate
+                                                        %></td>
+                                                    <td><%= project.keywords
+                                                        %></td>
+                                                    <td><%=
+                                                        project.comments.length
+                                                        %></td>
                                                     <td>
                                                         <svg id="Layer_1"
                                                             viewBox="0 0 24 24"
-                                                            fill="lightgreen"
+                                                            fill="<%= (project.isActive)  ? 'lightgreen' : 'lightgray' %>"
                                                             width="24"
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             data-name="Layer 1">
@@ -150,35 +105,93 @@
                                                         </svg>
                                                     </td>
                                                     <td>
-                                                        <a href>
-                                                            <svg
-                                                                class="me-2"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                id="Bold"
-                                                                viewBox="0 0 24 24"
-                                                                width="24"
-                                                                fill="white">
-                                                                <path
-                                                                    d="M21,11.5V15H18a3,3,0,0,0-3,3v3H4.5A1.5,1.5,0,0,1,3,19.5V4.5A1.5,1.5,0,0,1,4.5,3h9A1.5,1.5,0,0,0,15,1.5h0A1.5,1.5,0,0,0,13.5,0h-9A4.5,4.5,0,0,0,0,4.5v15A4.5,4.5,0,0,0,4.5,24H16.484a4.5,4.5,0,0,0,3.181-1.317l3.017-3.017A4.5,4.5,0,0,0,24,16.485V11.5A1.5,1.5,0,0,0,22.5,10h0A1.5,1.5,0,0,0,21,11.5Z" />
-                                                                <path
-                                                                    d="M17.793,1.793l-12.5,12.5A1,1,0,0,0,5,15v3a1,1,0,0,0,1,1H9a1,1,0,0,0,.707-.293L22.038,6.376a3.379,3.379,0,0,0,.952-3.17A3.118,3.118,0,0,0,17.793,1.793Z" />
-                                                            </svg>
-                                                        </a>
-                                                        <a href>
-                                                            <svg
-                                                                class="ms-2"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                id="Layer_1"
-                                                                data-name="Layer 1"
-                                                                viewBox="0 0 24 24"
-                                                                fill="white"
-                                                                width="24">
-                                                                <path
-                                                                    d="M17,4V2a2,2,0,0,0-2-2H9A2,2,0,0,0,7,2V4H2V6H4V21a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V6h2V4ZM11,17H9V11h2Zm4,0H13V11h2ZM15,4H9V2h6Z" />
-                                                            </svg>
-                                                        </a>
+                                                        <div
+                                                            class="d-flex justify-content-center">
+                                                            <a
+                                                                href="/admin-panel/edit-project/<%= project._id %>"
+                                                                class="btn">
+                                                                <svg
+                                                                    class="me-2"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    id="Bold"
+                                                                    viewBox="0 0 24 24"
+                                                                    width="24"
+                                                                    fill="white">
+                                                                    <path
+                                                                        d="M21,11.5V15H18a3,3,0,0,0-3,3v3H4.5A1.5,1.5,0,0,1,3,19.5V4.5A1.5,1.5,0,0,1,4.5,3h9A1.5,1.5,0,0,0,15,1.5h0A1.5,1.5,0,0,0,13.5,0h-9A4.5,4.5,0,0,0,0,4.5v15A4.5,4.5,0,0,0,4.5,24H16.484a4.5,4.5,0,0,0,3.181-1.317l3.017-3.017A4.5,4.5,0,0,0,24,16.485V11.5A1.5,1.5,0,0,0,22.5,10h0A1.5,1.5,0,0,0,21,11.5Z" />
+                                                                    <path
+                                                                        d="M17.793,1.793l-12.5,12.5A1,1,0,0,0,5,15v3a1,1,0,0,0,1,1H9a1,1,0,0,0,.707-.293L22.038,6.376a3.379,3.379,0,0,0,.952-3.17A3.118,3.118,0,0,0,17.793,1.793Z" />
+                                                                </svg>
+                                                            </a>
+                                                            <button
+                                                                type="button"
+                                                                class="btn"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#confirmModal-<%= project._id %>">
+                                                                <svg
+                                                                    class="ms-2"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    id="Layer_1"
+                                                                    data-name="Layer 1"
+                                                                    viewBox="0 0 24 24"
+                                                                    fill="white"
+                                                                    width="24">
+                                                                    <path
+                                                                        d="M17,4V2a2,2,0,0,0-2-2H9A2,2,0,0,0,7,2V4H2V6H4V21a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V6h2V4ZM11,17H9V11h2Zm4,0H13V11h2ZM15,4H9V2h6Z" />
+                                                                </svg>
+                                                            </button>
+                                                        </div>
                                                     </td>
                                                 </tr>
+                                                <!-- Modal -->
+                                                <div class="modal fade"
+                                                    id="confirmModal-<%= project._id %>"
+                                                    tabindex="-1"
+                                                    aria-labelledby="confirmModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog ">
+                                                        <div
+                                                            class="modal-content bg-dark text-light">
+                                                            <div
+                                                                class="modal-header">
+                                                                <h5
+                                                                    class="modal-title text-light"
+                                                                    id="confirmModalLabel">Warning</h5>
+                                                            </div>
+                                                            <div
+                                                                class="modal-body">
+                                                                Are you sure you
+                                                                want to
+                                                                <strong>
+                                                                    <span
+                                                                        class="text-danger">
+                                                                        DELETE</span>
+                                                                    "
+                                                                    <%=
+                                                                    project.title
+                                                                    %>
+                                                                    "</strong> ?
+                                                            </div>
+                                                            <div
+                                                                class="modal-footer">
+                                                                <form
+                                                                    action="/admin-panel/delete-project/<%= project._id %>"
+                                                                    method="POST">
+                                                                    <button
+                                                                        type="submit"
+                                                                        class="btn btn-primary">Confirm</button>
+                                                                </form>
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <% }) %>
+
                                             </table>
                                         </div>
                                     </div>
@@ -187,17 +200,13 @@
 
                         </div>
                     </div>
-                    <!-- Sale & Revenue End -->
 
-                    <!-- Footer Start -->
                     <%- include('../admin-partials/footer.ejs') %>
 
-                    <!-- Footer End -->
                 </div>
 
             </div>
 
-            <!-- JavaScript Libraries -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
             <script
                 src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

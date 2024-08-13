@@ -1,14 +1,14 @@
 import {
-    DecoupledEditor,
+    ClassicEditor,
     AccessibilityHelp,
     Alignment,
     Autoformat,
     AutoImage,
     AutoLink,
     Autosave,
+    Base64UploadAdapter,
     BlockQuote,
     Bold,
-    CloudServices,
     Code,
     CodeBlock,
     Essentials,
@@ -17,6 +17,7 @@ import {
     FontColor,
     FontFamily,
     FontSize,
+    FullPage,
     GeneralHtmlSupport,
     Heading,
     Highlight,
@@ -26,6 +27,7 @@ import {
     ImageBlock,
     ImageCaption,
     ImageInline,
+    ImageInsert,
     ImageInsertViaUrl,
     ImageResize,
     ImageStyle,
@@ -39,11 +41,16 @@ import {
     LinkImage,
     List,
     ListProperties,
-    PageBreak,
+    Markdown,
+    MediaEmbed,
+    Mention,
     Paragraph,
+    PasteFromMarkdownExperimental,
+    PasteFromOffice,
     RemoveFormat,
     SelectAll,
     ShowBlocks,
+    SourceEditing,
     SpecialCharacters,
     SpecialCharactersArrows,
     SpecialCharactersCurrency,
@@ -52,7 +59,6 @@ import {
     SpecialCharactersMathematical,
     SpecialCharactersText,
     Strikethrough,
-    Style,
     Subscript,
     Superscript,
     Table,
@@ -75,13 +81,13 @@ const editorConfig = {
             'undo',
             'redo',
             '|',
+            'sourceEditing',
             'showBlocks',
             'findAndReplace',
             'selectAll',
             'textPartLanguage',
             '|',
             'heading',
-            'style',
             '|',
             'fontSize',
             'fontFamily',
@@ -99,9 +105,10 @@ const editorConfig = {
             '|',
             'specialCharacters',
             'horizontalLine',
-            'pageBreak',
             'link',
+            'insertImage',
             'insertImageViaUrl',
+            'mediaEmbed',
             'insertTable',
             'highlight',
             'blockQuote',
@@ -113,8 +120,8 @@ const editorConfig = {
             'bulletedList',
             'numberedList',
             'todoList',
-            'indent',
             'outdent',
+            'indent',
             '|',
             'accessibilityHelp'
         ],
@@ -127,9 +134,9 @@ const editorConfig = {
         AutoImage,
         AutoLink,
         Autosave,
+        Base64UploadAdapter,
         BlockQuote,
         Bold,
-        CloudServices,
         Code,
         CodeBlock,
         Essentials,
@@ -138,6 +145,7 @@ const editorConfig = {
         FontColor,
         FontFamily,
         FontSize,
+        FullPage,
         GeneralHtmlSupport,
         Heading,
         Highlight,
@@ -147,6 +155,7 @@ const editorConfig = {
         ImageBlock,
         ImageCaption,
         ImageInline,
+        ImageInsert,
         ImageInsertViaUrl,
         ImageResize,
         ImageStyle,
@@ -160,11 +169,16 @@ const editorConfig = {
         LinkImage,
         List,
         ListProperties,
-        PageBreak,
+        Markdown,
+        MediaEmbed,
+        Mention,
         Paragraph,
+        PasteFromMarkdownExperimental,
+        PasteFromOffice,
         RemoveFormat,
         SelectAll,
         ShowBlocks,
+        SourceEditing,
         SpecialCharacters,
         SpecialCharactersArrows,
         SpecialCharactersCurrency,
@@ -173,7 +187,6 @@ const editorConfig = {
         SpecialCharactersMathematical,
         SpecialCharactersText,
         Strikethrough,
-        Style,
         Subscript,
         Superscript,
         Table,
@@ -263,8 +276,6 @@ const editorConfig = {
             'resizeImage'
         ]
     },
-    initialData:
-        '',
     link: {
         addTargetToExternalLinks: true,
         defaultProtocol: 'https://',
@@ -285,68 +296,30 @@ const editorConfig = {
             reversed: true
         }
     },
-    menuBar: {
-        isVisible: true
-    },
-
-    placeholder: 'Type or paste your content here!',
-    style: {
-        definitions: [
+    mention: {
+        feeds: [
             {
-                name: 'Article category',
-                element: 'h3',
-                classes: ['category']
-            },
-            {
-                name: 'Title',
-                element: 'h2',
-                classes: ['document-title']
-            },
-            {
-                name: 'Subtitle',
-                element: 'h3',
-                classes: ['document-subtitle']
-            },
-            {
-                name: 'Info box',
-                element: 'p',
-                classes: ['info-box']
-            },
-            {
-                name: 'Side quote',
-                element: 'blockquote',
-                classes: ['side-quote']
-            },
-            {
-                name: 'Marker',
-                element: 'span',
-                classes: ['marker']
-            },
-            {
-                name: 'Spoiler',
-                element: 'span',
-                classes: ['spoiler']
-            },
-            {
-                name: 'Code (dark)',
-                element: 'pre',
-                classes: ['fancy-code', 'fancy-code-dark']
-            },
-            {
-                name: 'Code (bright)',
-                element: 'pre',
-                classes: ['fancy-code', 'fancy-code-bright']
+                marker: '@',
+                feed: [
+                    /* See: https://ckeditor.com/docs/ckeditor5/latest/features/mentions.html */
+                ]
             }
         ]
     },
+    menuBar: {
+        isVisible: true
+    },
+    placeholder: 'Type or paste your content here!',
     table: {
         contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells', 'tableProperties', 'tableCellProperties']
     }
 };
 
-DecoupledEditor.create(document.querySelector('#editor'), editorConfig).then(editor => {
-    document.querySelector('#editor-toolbar').appendChild(editor.ui.view.toolbar.element);
-    document.querySelector('#editor-menu-bar').appendChild(editor.ui.view.menuBarView.element);
-
-    return editor;
-});
+ClassicEditor
+    .create(document.querySelector('#editor'), editorConfig)
+    .then(editor => {
+        window.editor = editor;
+    })
+    .catch(error => {
+        console.error('There was a problem initializing the editor:', error);
+    });
