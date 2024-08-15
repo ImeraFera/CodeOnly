@@ -8,17 +8,10 @@
     <body>
         <div class="container-xxl position-relative  d-flex p-0">
 
-            <!-- Sidebar Start -->
-            <%- include('../admin-partials/sidebar.ejs') %>
-            <!-- Sidebar End -->
-
-            <!-- Content Start -->
+            <%- include('../admin-partials/sidebar.ejs' , {user: data.user}) %>
             <div class="content bg-dark">
-                <!-- Navbar Start -->
-                <%- include('../admin-partials/navbar.ejs') %>
-                <!-- Navbar End -->
-
-                <!-- Sale & Revenue Start -->
+                <%- include('../admin-partials/navbar.ejs' , {user: data.user})
+                %>
                 <div class="container-fluid pt-4 px-4">
                     <div class="row g-4">
                         <div class="col-md-6 col-xl-6">
@@ -28,7 +21,11 @@
                                     class="fa fa-chart-bar fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">The Best Project</p>
-                                    <h6 class="mb-0 text-light">Bubble Sort</h6>
+                                    <h6 class="mb-0 text-light">
+                                        <%=
+                                        data.bestProject[0].title
+                                        %>
+                                    </h6>
                                 </div>
                             </div>
                         </div>
@@ -44,8 +41,12 @@
                                         d="m24,24h-6.5v-6c0-1.105.895-2,2-2h2.5c1.105,0,2,.895,2,2v6ZM9.345,7.564l.48.362,2.183-1.687,2.173,1.68.504-.349-.884-2.686,2.197-1.273v-.611h-2.883l-.784-3h-.648l-.784,3h-2.899v.615l2.212,1.231-.869,2.717Zm-4.845,5.436h-2.5c-1.105,0-2,.895-2,2v9h6.5v-9c0-1.105-.895-2-2-2Zm9-4h-3c-1.105,0-2,.895-2,2v13h7v-13c0-1.105-.895-2-2-2Z" />
                                 </svg>
                                 <div class="ms-3">
-                                    <p class="mb-2">The Best Project Score</p>
-                                    <h6 class="mb-0 text-light">113</h6>
+                                    <p class="mb-2">The Best Project Likes</p>
+                                    <h6 class="mb-0 text-light">
+                                        <%=
+                                        data.bestProject[0].whoLikesCount
+                                        %>
+                                    </h6>
                                 </div>
                             </div>
                         </div>

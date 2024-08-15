@@ -16,7 +16,7 @@
                 <%- include('../admin-partials/navbar.ejs') %>
                 <div class="container-fluid pt-4 px-4">
                     <form class="row g-0" method="post" id="newProjectForm"
-                        action="/admin-panel/new-project">
+                        action="/admin-panel/edit-project/<%= project._id %>">
                         <div class="col-md-12  ">
                             <div
                                 class="container p-4  border border-bottom-0 border-2  border-primary ">
@@ -67,12 +67,15 @@
                                         id="category"
                                         class="form-select border border-2  border-primary bg-gray text-light">
                                         <% categories.forEach(category => { %>
-                                        <option <%=(category.id ===
-                                            project.category._id) ? 'selected' :
-                                            '' %> value="<%= category._id
-                                            %>"><%=
-                                            category.name %></option>
+                                        <option
+                                            value="<%= category._id %>"
+                                            <%=(category._id.toString() ===
+                                            project.category.toString()) ?
+                                            'selected' : '' %>>
+                                            <%= category.name %>
+                                        </option>
                                         <% }) %>
+
                                     </select>
                                     <label
                                         class="text-light"
@@ -89,6 +92,23 @@
                                         for="floatingInput ">Release Date
                                     </label>
                                 </div>
+
+                                <div class="form-floating mb-3 ">
+                                    <div class="form-check form-switch">
+                                        <label
+                                            class="form-check-label text-light"
+                                            for="activeOrInactive">
+                                            <%= (project.isActive) ? 'Active' :
+                                            'Inactive' %>
+                                        </label>
+                                        <input class="form-check-input"
+                                            type="checkbox" role="switch"
+                                            id="isActive" name="isActive"
+                                            <%=(project.isActive) ? 'checked' :
+                                            '' %>>
+
+                                    </div>
+                                </div>
                             </div>
                             <div
                                 class="container p-4   border border-2  border-top-0  border-primary ">
@@ -101,7 +121,7 @@
                                                 class="editor-container__editor">
                                                 <textarea name="content"
                                                     id="editor">
-                                                   
+                                                    <%- project.content %>
                                                 </textarea>
                                             </div>
                                         </div>
@@ -111,7 +131,7 @@
                                     class="form-floating mb-3 text-center">
                                     <button type="submit"
                                         id="submit"
-                                        class="btn btn-primary  w-75">Share the
+                                        class="btn btn-primary  w-75">Save the
                                         Project</button>
                                 </div>
                             </div>
@@ -182,6 +202,22 @@
                 dateInput.value=minDate;
 
             });
+
+        </script>
+
+        <script type="text/javascript">
+
+            document.getElementById('isActive').addEventListener('change', () => {
+                const label = document.getElementsByClassName('form-check-label')[0];
+                const checkbox = document.getElementById('isActive');
+                
+                if (checkbox.checked) {
+                    label.textContent = 'Active';
+                } else {
+                    label.textContent = 'Inactive';
+                }
+            });
+            
 
         </script>
 

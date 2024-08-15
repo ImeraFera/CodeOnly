@@ -5,6 +5,7 @@ let activePage = {
 const Category = require('../models/category');
 const Comment = require('../models/comment');
 const Project = require('../models/project');
+const User = require('../models/user');
 
 
 exports.postDeleteProject = async (req, res) => {
@@ -64,6 +65,8 @@ exports.getProjectList = async (req, res) => {
 
         const projects = await Project.find({
             author: res.locals.user._id,
+        }).populate({
+            path: 'category',
         });
 
         activePage.name = "project-list";
@@ -76,22 +79,54 @@ exports.getProjectList = async (req, res) => {
 }
 
 exports.getHome = async (req, res) => {
-
-
-    // const user = res.
-    // console.log(res.locals.user)
-    const bestProject = await Project.find({
-        author: res.locals.user._id,
-    })
-
-    // console.log(bestProject)
-
-
-
-
-
     activePage.name = "home";
-    res.render('admin/admin-home', { activePage });
+
+    try {
+
+        const user = res.locals.user;
+
+        const userScore = await User.findOne({
+            _id: res.locals.user._id,
+        }).select('score')
+
+
+        const bestProject = await Project.aggregate([
+            {
+                $addFields: {
+                    whoLikesCount: { $size: "$whoLikes" }
+                }
+            },
+            {
+                $sort: {
+                    whoLikesCount: -1
+                }
+            },
+            {
+                $limit: 1
+            },
+            {
+                $project: {
+                    title: 1,
+                    whoLikesCount: 1
+                }
+            }
+        ]);
+
+
+        const data = {
+            bestProject,
+            userScore,
+            user
+        }
+
+        return res.render('admin/admin-home', { activePage, data });
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
 }
 
 exports.getProfileSettings = (req, res) => {
@@ -143,6 +178,7 @@ exports.postNewProject = async (req, res) => {
 }
 
 exports.getEditProject = async (req, res) => {
+    activePage.name = "projectList";
 
     const projectId = req.params.project_id;
     const userId = res.locals.user._id;
@@ -165,5 +201,50 @@ exports.getEditProject = async (req, res) => {
 
 exports.postEditProject = async (req, res) => {
 
+    const projectId = req.params.project_id;
+    let { title, keywords, desc, content, date, category, isActive } = req.body;
+
+    keywords = keywords.split(',');
+    keywords = keywords.map(keyword => keyword.trim());
+
+    try {
+
+        const project = await Project.findById(projectId)
+
+
+        if (project.category !== category) {
+            await Category.updateOne({
+                _id: project.category,
+            }, {
+                $inc: { numberOfProjects: -1 },
+            })
+
+            await Category.updateOne({
+                _id: category,
+            }, {
+                $inc: { numberOfProjects: +1 },
+            })
+        }
+
+        await Project.findOneAndUpdate({
+            _id: projectId,
+        }, {
+            title,
+            keywords,
+            desc,
+            content,
+            releaseDate: date,
+            category: (project.category !== category) ? category : project.category,
+            isActive: (isActive) ? true : false,
+        })
+
+        req.flash('success', 'Project is updated successfully');
+        return res.redirect('/admin-panel/project-list')
+
+    } catch (error) {
+        console.log(error)
+    }
+
 
 }
+
