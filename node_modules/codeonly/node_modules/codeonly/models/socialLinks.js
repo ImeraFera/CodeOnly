@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 
 const socialLinkSchema = mongoose.Schema({
-    name: String,
-    url: String,
+    linkedin: String,
+    instagram: String,
+    website: String,
+    twitter: String,
+    github: String,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 });
 
 

@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     img: String,
     score: Number,
     placed: String,
-    socialLinks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SocialLink' }],
+    socialLinks: { type: mongoose.Schema.Types.ObjectId, ref: 'SocialLink' },
     role: { type: mongoose.Schema.Types.ObjectId, ref: 'Role' },
     projects: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }],
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],

@@ -23,22 +23,35 @@
                                 class="container p-4  border  border-2  border-primary ">
                                 <h6 class="mb-4 text-light">Profile
                                     Settings</h6>
-                                <form action method="post" class="row">
+                                <form action method="post" class="row"
+                                    enctype="multipart/form-data">
                                     <div class="col-md-6 p-3">
                                         <div
                                             class="card border border-2 border-primary bg-transparent text-white">
-                                            <img src="/static/img/2.jpg"
+                                            <img
+                                                src="/static/img/<%= data.user.img %>"
                                                 width="150px"
                                                 height="150px"
+                                                id="userImg"
+                                                name="userImg"
                                                 class="rounded-circle mx-auto border border-2 my-3 border-primary">
+                                            <input type="file" id="fileInput"
+                                                name="fileInput"
+                                                style="display: none;" />
+
+                                            <!-- Buton -->
                                             <button type="button"
-                                                class="btn btn-primary rounded-0">Change
+                                                class="btn btn-primary rounded-0"
+                                                id="changeImageBtn">Change
                                                 Image</button>
                                             <div class="card-body">
                                                 <div
                                                     class="form-floating mb-3">
                                                     <input type="text"
                                                         required
+                                                        name="name"
+                                                        id="name"
+                                                        value="<%= data.user.name %>"
                                                         class="form-control border border-2  border-primary bg-gray text-light"
                                                         placeholder>
                                                     <label
@@ -50,7 +63,9 @@
                                                 <div
                                                     class="form-floating mb-3">
                                                     <input type="text"
-                                                        required
+                                                        name="company"
+                                                        id="company"
+                                                        value="<%= data.user.company %>"
                                                         class="form-control border border-2  border-primary bg-gray text-light"
                                                         placeholder>
                                                     <label
@@ -63,9 +78,10 @@
                                                     class="form-floating mb-3">
                                                     <textarea
                                                         class="form-control border border-2  border-primary bg-gray text-light"
-                                                        placeholder
+                                                        name="bio"
+                                                        id="bio"
                                                         style="height: 100px;"
-                                                        id="floatingTextarea"></textarea>
+                                                        id="floatingTextarea"><%= data.user.bio %></textarea>
                                                     <label
                                                         for="floatingTextarea"><i
                                                             class="fas fa-paragraph"></i>
@@ -105,7 +121,9 @@
                                                 <div
                                                     class="form-floating mb-3">
                                                     <input type="text"
-                                                        required
+                                                        name="linkedin"
+                                                        id="linkedin"
+                                                        value="<%= data.socialLinks.linkedin %>"
                                                         class="form-control border border-2  border-primary bg-gray text-light"
                                                         placeholder>
                                                     <label
@@ -117,7 +135,9 @@
                                                 <div
                                                     class="form-floating mb-3">
                                                     <input type="text"
-                                                        required
+                                                        value="<%= data.socialLinks.website %>"
+                                                        name="website"
+                                                        id="website"
                                                         class="form-control border border-2  border-primary bg-gray text-light"
                                                         placeholder>
                                                     <label
@@ -129,7 +149,9 @@
                                                 <div
                                                     class="form-floating mb-3">
                                                     <input type="text"
-                                                        required
+                                                        value="<%= data.socialLinks.github %>"
+                                                        name="github"
+                                                        id="github"
                                                         class="form-control border border-2  border-primary bg-gray text-light"
                                                         placeholder>
                                                     <label
@@ -141,7 +163,9 @@
                                                 <div
                                                     class="form-floating mb-3">
                                                     <input type="text"
-                                                        required
+                                                        name="twitter"
+                                                        id="twitter"
+                                                        value="<%= data.socialLinks.twitter %>"
                                                         class="form-control border border-2  border-primary bg-gray text-light"
                                                         placeholder>
                                                     <label
@@ -153,7 +177,9 @@
                                                 <div
                                                     class="form-floating mb-3">
                                                     <input type="text"
-                                                        required
+                                                        name="instagram"
+                                                        value="<%= data.socialLinks.instagram %>"
+                                                        id="instagram"
                                                         class="form-control border border-2  border-primary bg-gray text-light"
                                                         placeholder>
                                                     <label
@@ -167,8 +193,10 @@
                                                     class="form-floating mb-3">
                                                     <input type="email"
                                                         required
+                                                        name="email"
+                                                        id="email"
                                                         disabled
-                                                        value="asdasd@asdas.com"
+                                                        value="<%= data.user.email %>"
                                                         class="form-control border border-2  border-primary bg-gray text-light"
                                                         placeholder>
                                                     <label
@@ -239,6 +267,29 @@
                 src="/static/admin-panel-assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
             <script src="/static/admin-panel-assets/js/main.js"></script>
+            <script type="text/javascript">
+                document.getElementById('changeImageBtn').addEventListener('click', function() {
+                    document.getElementById('fileInput').click();
+                });
+
+                document.getElementById('fileInput').addEventListener('change', function() {
+                    const fileInput = document.getElementById('fileInput');
+                    if (fileInput.files.length > 0) {
+                        const file = fileInput.files[0];
+
+                        const reader = new FileReader();
+
+                        reader.onload = function(event) {
+                            const imgElement = document.getElementById('userImg');
+                            imgElement.src = event.target.result;
+                        };
+        
+                        reader.readAsDataURL(file);
+
+                    }
+                });
+
+            </script>
 
         </body>
 

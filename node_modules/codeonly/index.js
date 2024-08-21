@@ -25,6 +25,8 @@ const adminRoutes = require('./routes/adminRoutes');
 
 // * Middlewares 
 const { locals } = require('./middlewares/locals');
+const { uploadSingle, uploadMultiple } = require('./middlewares/fileUpload');
+
 
 
 app.use(express.urlencoded({ extended: false }))

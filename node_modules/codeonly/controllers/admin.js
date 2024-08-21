@@ -6,7 +6,10 @@ const Category = require('../models/category');
 const Comment = require('../models/comment');
 const Project = require('../models/project');
 const User = require('../models/user');
+const SocialLink = require('../models/socialLinks');
+const Role = require('../models/role');
 
+const { removeOldFile } = require('../helpers/removeOldFile');
 
 exports.postDeleteProject = async (req, res) => {
 
@@ -83,7 +86,12 @@ exports.getHome = async (req, res) => {
 
     try {
 
-        const user = res.locals.user;
+        const user = await User.findOne({
+            _id: res.locals.user._id,
+        }).populate({
+            path: 'role',
+            select: 'roleType'
+        });
 
         const userScore = await User.findOne({
             _id: res.locals.user._id,
@@ -112,7 +120,6 @@ exports.getHome = async (req, res) => {
             }
         ]);
 
-
         const data = {
             bestProject,
             userScore,
@@ -129,10 +136,91 @@ exports.getHome = async (req, res) => {
 
 }
 
-exports.getProfileSettings = (req, res) => {
-    activePage.name = "profile-settings";
-    res.render('admin/profile-settings', { activePage });
+exports.getProfileSettings = async (req, res) => {
+
+
+    try {
+
+        const socialLinks = await SocialLink.findOne({
+            user: res.locals.user._id,
+        })
+
+        const user = await User.findOne({
+            _id: res.locals.user._id,
+        })
+
+        const data = { socialLinks, user }
+
+
+        activePage.name = "profile-settings";
+        return res.render('admin/profile-settings', { activePage, data });
+
+    } catch (error) {
+        console.log(error);
+    }
+
+
 }
+
+exports.postProfileSettings = async (req, res) => {
+
+    const { name, company, bio, linkedin, website, github, twitter, instagram } = req.body;
+    let newImg;
+
+    try {
+
+
+        if (req.file && req.file.filename) {
+            newImg = req.file.filename;
+            const oldImg = await User.findOne({
+                _id: res.locals.user._id,
+            }).select('img');
+            removeOldFile(oldImg.img);
+        }
+        else {
+            newImg = res.locals.user.img;
+        }
+
+        const user = await User.findOne({
+            _id: res.locals.user._id,
+        }).populate({
+            path: 'socialLinks',
+        })
+
+        if ((name !== user.name) || (company !== user.company) || (bio !== user.bio) || (newImg !== user.img)) {
+            await User.findByIdAndUpdate(user._id, {
+                name,
+                company,
+                bio,
+                img: newImg,
+            });
+        }
+
+        if ((linkedin !== user.socialLinks.linkedin) ||
+            (twitter !== user.socialLinks.twitter) ||
+            (instagram !== user.socialLinks.instagram) ||
+            (github !== user.socialLinks.github) ||
+            (website !== user.socialLinks.website)) {
+
+            await SocialLink.findOneAndUpdate(
+                { user: user._id },
+                {
+                    linkedin,
+                    website,
+                    github,
+                    twitter,
+                    instagram,
+                }
+            );
+        }
+
+        return res.redirect('/admin-panel/profile-settings')
+
+    } catch (error) {
+        console.log(error);
+    }
+
+};
 
 exports.postNewProject = async (req, res) => {
 

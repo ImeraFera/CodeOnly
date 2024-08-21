@@ -3,10 +3,12 @@ const router = express.Router();
 
 
 // * Controllers
-const { getFollowing, getProfileSettings, getToDo, getNewProject, getProjectList, postNewProject, getHome, postDeleteProject, getEditProject, postEditProject } = require('../controllers/admin');
+const { getFollowing, getProfileSettings, getToDo, getNewProject, getProjectList, postNewProject, getHome, postDeleteProject, getEditProject, postEditProject, postProfileSettings } = require('../controllers/admin');
 
 // * Middlewares
 const { isAuth } = require('../middlewares/auth');
+const { uploadSingle, uploadMultiple } = require('../middlewares/fileUpload');
+
 
 
 router.post('/delete-project/:project_id', isAuth, postDeleteProject)
@@ -20,6 +22,8 @@ router.get("/following", isAuth, getFollowing);
 router.get("/to-do", isAuth, getToDo)
 
 router.get("/profile-settings", isAuth, getProfileSettings)
+
+router.post("/profile-settings", isAuth, uploadSingle, postProfileSettings)
 
 router.get("/new-project", isAuth, getNewProject)
 
