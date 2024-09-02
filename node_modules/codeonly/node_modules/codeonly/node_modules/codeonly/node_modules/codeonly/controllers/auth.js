@@ -51,7 +51,10 @@ exports.postLogin = async (req, res) => {
 
     try {
 
-        const user = await User.findOne({ email: email })
+        const user = await User.findOne({ email: email }).populate({
+            path: 'role',
+            select: 'roleType'
+        })
         const isMatch = await bcrypt.compare(password, user.password)
         const isBanned = user.isBanned;
         if (isBanned) {

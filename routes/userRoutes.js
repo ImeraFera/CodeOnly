@@ -7,7 +7,7 @@ const { message } = require('../middlewares/messages');
 
 
 // * Controllers
-const { getProject, getCodeList, getCategories, getHome, getMyProfile, postComment, postLikeProject, postLikeComment, get404 } = require('../controllers/user');
+const { getProject, getCodeList, getCategories, getHome, getProfile, postComment, postLikeProject, postLikeComment, get404, postFollow } = require('../controllers/user');
 const { getRegister, postRegister, postLogin, getLogin, getLogout } = require('../controllers/auth');
 const { isAuth } = require('../middlewares/auth');
 const { blockedPage } = require('../middlewares/blockedPage');
@@ -16,7 +16,7 @@ const { blockedPage } = require('../middlewares/blockedPage');
 // * Project Page
 router.get("/code-details/:project_id", message, getProject);
 
-// * Project Like Subpage
+// * Project Like Subpages
 router.post("/postLikeComment/:comment_id/:project_id", isAuth, postLikeComment)
 router.get("/postLikeComment/:comment_id/:project_id", isAuth, (req, res, next) => {
     return res.redirect('/code-details/' + req.params.project_id);
@@ -30,14 +30,14 @@ router.get("/postComment/:project_id", isAuth, (req, res, next) => {
     return res.redirect('/code-details/' + req.params.project_id);
 });
 
-
-
+// * Follow Page
+router.post('/follow/:user_id', postFollow)
 
 // * Code-List Page
 router.get("/code-list/:category_name", getCodeList);
 
 // * Profile Page
-router.get("/my-profile", getMyProfile)
+router.get("/profile/:user_id", message, getProfile)
 
 // * Login Page
 router.get("/login", message, getLogin)

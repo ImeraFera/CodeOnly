@@ -1,49 +1,38 @@
 
 <div class="sidebar pe-4 pb-3 ">
     <nav class="navbar bg-dark navbar-dark">
-        <a href="index.html" class="navbar-brand mx-4 mb-3">
+        <a href="/admin-panel/" class="navbar-brand mx-4 mb-3">
             <h3 class="text-primary">CodeOnly</h3>
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
             <div class="position-relative">
                 <img class="rounded-circle"
-                    src="/static/img/<%= user.img %>" alt
+                    src="/static/img/<%= data.user.img %>" alt
                     style="width: 40px; height: 40px;">
                 <div
                     class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
             </div>
             <div class="ms-3">
-                <h6 class="mb-0 text-light"><%= user.name %></h6>
-                <span class="text-light "><%= user.role.roleType %></span>
+                <h6 class="mb-0 text-light"><%= data.user.name %></h6>
+                <span class="text-light "><%= data.user.role.roleType %></span>
             </div>
         </div>
         <div class="navbar-nav w-100">
             <a href="/admin-panel"
-                class="nav-item nav-link <%= (activePage.name == "home" &&
-                activePage)
-                ? 'active' : '' %>"><i
+                class="nav-item nav-link "><i
                     class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
             <div class="nav-item dropdown">
                 <a href="#"
-                    class="nav-link dropdown-toggle  <%= ((activePage.name == "new-project"
-                    || activePage.name == "project-list")
-                    &&
-                    activePage)
-                    ? 'active' : '' %>"
-                    data-bs-toggle="dropdown"><i
-                        class="fa fa-laptop me-2 "></i>My Codes</a>
+                    class="nav-link dropdown-toggle "
+                    data-bs-toggle="dropdown">
+                    <i
+                        class="fa fa-laptop me-2 ">
+                    </i>My Codes</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="/admin-panel/new-project"
-                        class="dropdown-item  <%= (activePage.name == "new-project"
-                        &&
-                        activePage)
-                        ? 'active' : '' %>">New Project</a>
+                        class="dropdown-item  ">New Project</a>
                     <a href="/admin-panel/project-list"
-                        class="dropdown-item  <%= ((activePage.name == "project-list"
-                        || activePage.name == "project-list")
-                        &&
-                        activePage)
-                        ? 'active' : '' %>">Project List</a>
+                        class="dropdown-item ">Project List</a>
                 </div>
             </div>
 

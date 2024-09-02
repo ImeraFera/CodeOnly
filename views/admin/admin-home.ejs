@@ -8,7 +8,8 @@
     <body>
         <div class="container-xxl position-relative  d-flex p-0">
 
-            <%- include('../admin-partials/sidebar.ejs' , {user: data.user}) %>
+            <%- include('../admin-partials/sidebar.ejs' , {user: data.user})
+            %>
             <div class="content bg-dark">
                 <%- include('../admin-partials/navbar.ejs' , {user: data.user})
                 %>
@@ -154,28 +155,27 @@
                                 class="bg-dark border  border-2 border-primary  rounded h-100 p-4">
                                 <div
                                     class="d-flex align-items-center justify-content-between mb-4">
-                                    <h6 class="mb-4 text-light">Best
-                                        Comments</h6>
-                                    <a href>Show All</a>
+                                    <h6 class="mb-4 text-light">
+                                        Best Comments
+                                    </h6>
+                                    <a href="/admin-panel/comments">Show All</a>
+
                                 </div>
                                 <div class="owl-carousel testimonial-carousel">
-                                    <% for( let index = 0; index < 10; index++ )
-                                    { %>
+                                    <% data.bestComments.forEach(comment => { %>
                                     <div
                                         class="testimonial-item text-center text-light">
                                         <img
                                             class="img-fluid rounded-circle mx-auto mb-4"
-                                            src="/static/img/2.jpg"
+                                            src="/static/img/<%= comment.whoSend.img %>"
                                             style="width: 100px; height: 100px;">
-                                        <h5 class="mb-1 text-light">Client
-                                            Name</h5>
-                                        <p>Profession</p>
-                                        <p class="mb-0">Dolor et eos labore,
-                                            stet justo sed est sed. Diam sed sed
-                                            dolor stet amet eirmod eos labore
-                                            diam</p>
+                                        <h5 class="mb-1 text-light"><%=
+                                            comment.whoSend.name %></h5>
+                                        <p><%= comment.date %></p>
+                                        <p class="mb-0"><%= comment.content
+                                            %></p>
                                     </div>
-                                    <% } %>
+                                    <% }) %>
                                 </div>
                             </div>
                         </div>

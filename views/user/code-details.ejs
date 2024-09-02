@@ -58,7 +58,7 @@
                                         height="50px"
                                         class="rounded-circle" alt>
                                     <a
-                                        href="/user/<%= project.author.id %>"
+                                        href="/profile/<%= project.author.id %>"
                                         class="nav-link fs-6 ms-3 fw-bold">
                                         <%= project.author.name %>
                                     </a>
@@ -211,10 +211,25 @@
                                                 <span
                                                     class="input-group-text"></span>
                                             </div>
+
+                                            <% if (!user) { %>
                                             <button class="btn btn-lg send-btn"
-                                                type="submit"><%= (user) ?
-                                                "Send" : "Login To Send Comment"
-                                                %></button>
+                                                type="submit">
+                                                Login To Send Comment
+                                            </button>
+                                            <% } else if (user._id.toString()
+                                            === project.author._id.toString()) {
+                                            %>
+                                            <p class="btn btn-lg send-btn">
+                                                You can't send comment yourself.
+                                            </p>
+                                            <% } else { %>
+                                            <button class="btn btn-lg send-btn"
+                                                type="submit">
+                                                Send
+                                            </button>
+                                            <% } %>
+
                                         </form>
                                     </div>
                                     <div class="col-md-8">

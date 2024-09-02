@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/header.ejs') %>
+        <link rel="stylesheet" href="/static/css/profile.css">
+
+    </head>
+    <body>
+        <%- include('../partials/navbar.ejs') %>
+
+        <div class="container-fluid p-5">
+            <% if (messages.error) { %>
+            <script>
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                background: '#00171F',
+                                color: 'white',
+                                confirmButtonColor: '#36AAA6',
+                                text: '<%= messages.error %>'
+                            });
+                        </script>
+            <% } %>
+
+            <% if (messages.success) { %>
+            <script>
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                background: '#00171F',
+                                color: 'white',
+                                confirmButtonColor: '#36AAA6',
+                                text: '<%= messages.success %>'
+                            }).then((result) => {
+                               
+                            });
+                        </script>
+            <% } %>
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="profile-card">
+                        <div class="card__img">
+                            <svg xmlns='http://www.w3.org/2000/svg'
+                                width='100%'><rect fill='#00171F' width='540'
+                                    height='450' /><defs><lineargradient id='a'
+                                        gradientUnits='userSpaceOnUse' x1='0'
+                                        x2='0' y1='0' y2='100%'
+                                        gradientTransform='rotate(142,768,351)'><stop
+                                            offset='0'
+                                            stop-color='#00171F' /><stop
+                                            offset='1'
+                                            stop-color='#36AAA6' /></lineargradient><pattern
+                                        patternUnits='userSpaceOnUse' id='b'
+                                        width='633' height='527.5' x='0' y='0'
+                                        viewBox='0 0 1080 900'><g
+                                            fill-opacity='0.06'><polygon
+                                                fill='#444'
+                                                points='90 150 0 300 180 300' /><polygon
+                                                points='90 150 180 0 0 0' /><polygon
+                                                fill='#AAA'
+                                                points='270 150 360 0 180 0' /><polygon
+                                                fill='#DDD'
+                                                points='450 150 360 300 540 300' /><polygon
+                                                fill='#999'
+                                                points='450 150 540 0 360 0' /><polygon
+                                                points='630 150 540 300 720 300' /><polygon
+                                                fill='#DDD'
+                                                points='630 150 720 0 540 0' /><polygon
+                                                fill='#444'
+                                                points='810 150 720 300 900 300' /><polygon
+                                                fill='#FFF'
+                                                points='810 150 900 0 720 0' /><polygon
+                                                fill='#DDD'
+                                                points='990 150 900 300 1080 300' /><polygon
+                                                fill='#444'
+                                                points='990 150 1080 0 900 0' /><polygon
+                                                fill='#DDD'
+                                                points='90 450 0 600 180 600' /><polygon
+                                                points='90 450 180 300 0 300' /><polygon
+                                                fill='#666'
+                                                points='270 450 180 600 360 600' /><polygon
+                                                fill='#AAA'
+                                                points='270 450 360 300 180 300' /><polygon
+                                                fill='#DDD'
+                                                points='450 450 360 600 540 600' /><polygon
+                                                fill='#999'
+                                                points='450 450 540 300 360 300' /><polygon
+                                                fill='#999'
+                                                points='630 450 540 600 720 600' /><polygon
+                                                fill='#FFF'
+                                                points='630 450 720 300 540 300' /><polygon
+                                                points='810 450 720 600 900 600' /><polygon
+                                                fill='#DDD'
+                                                points='810 450 900 300 720 300' /><polygon
+                                                fill='#AAA'
+                                                points='990 450 900 600 1080 600' /><polygon
+                                                fill='#444'
+                                                points='990 450 1080 300 900 300' /><polygon
+                                                fill='#222'
+                                                points='90 750 0 900 180 900' /><polygon
+                                                points='270 750 180 900 360 900' /><polygon
+                                                fill='#DDD'
+                                                points='270 750 360 600 180 600' /><polygon
+                                                points='450 750 540 600 360 600' /><polygon
+                                                points='630 750 540 900 720 900' /><polygon
+                                                fill='#444'
+                                                points='630 750 720 600 540 600' /><polygon
+                                                fill='#AAA'
+                                                points='810 750 720 900 900 900' /><polygon
+                                                fill='#666'
+                                                points='810 750 900 600 720 600' /><polygon
+                                                fill='#999'
+                                                points='990 750 900 900 1080 900' /><polygon
+                                                fill='#999'
+                                                points='180 0 90 150 270 150' /><polygon
+                                                fill='#444'
+                                                points='360 0 270 150 450 150' /><polygon
+                                                fill='#FFF'
+                                                points='540 0 450 150 630 150' /><polygon
+                                                points='900 0 810 150 990 150' /><polygon
+                                                fill='#222'
+                                                points='0 300 -90 450 90 450' /><polygon
+                                                fill='#FFF'
+                                                points='0 300 90 150 -90 150' /><polygon
+                                                fill='#FFF'
+                                                points='180 300 90 450 270 450' /><polygon
+                                                fill='#666'
+                                                points='180 300 270 150 90 150' /><polygon
+                                                fill='#222'
+                                                points='360 300 270 450 450 450' /><polygon
+                                                fill='#FFF'
+                                                points='360 300 450 150 270 150' /><polygon
+                                                fill='#444'
+                                                points='540 300 450 450 630 450' /><polygon
+                                                fill='#222'
+                                                points='540 300 630 150 450 150' /><polygon
+                                                fill='#AAA'
+                                                points='720 300 630 450 810 450' /><polygon
+                                                fill='#666'
+                                                points='720 300 810 150 630 150' /><polygon
+                                                fill='#FFF'
+                                                points='900 300 810 450 990 450' /><polygon
+                                                fill='#999'
+                                                points='900 300 990 150 810 150' /><polygon
+                                                points='0 600 -90 750 90 750' /><polygon
+                                                fill='#666'
+                                                points='0 600 90 450 -90 450' /><polygon
+                                                fill='#AAA'
+                                                points='180 600 90 750 270 750' /><polygon
+                                                fill='#444'
+                                                points='180 600 270 450 90 450' /><polygon
+                                                fill='#444'
+                                                points='360 600 270 750 450 750' /><polygon
+                                                fill='#999'
+                                                points='360 600 450 450 270 450' /><polygon
+                                                fill='#666'
+                                                points='540 600 630 450 450 450' /><polygon
+                                                fill='#222'
+                                                points='720 600 630 750 810 750' /><polygon
+                                                fill='#FFF'
+                                                points='900 600 810 750 990 750' /><polygon
+                                                fill='#222'
+                                                points='900 600 990 450 810 450' /><polygon
+                                                fill='#DDD'
+                                                points='0 900 90 750 -90 750' /><polygon
+                                                fill='#444'
+                                                points='180 900 270 750 90 750' /><polygon
+                                                fill='#FFF'
+                                                points='360 900 450 750 270 750' /><polygon
+                                                fill='#AAA'
+                                                points='540 900 630 750 450 750' /><polygon
+                                                fill='#FFF'
+                                                points='720 900 810 750 630 750' /><polygon
+                                                fill='#222'
+                                                points='900 900 990 750 810 750' /><polygon
+                                                fill='#222'
+                                                points='1080 300 990 450 1170 450' /><polygon
+                                                fill='#FFF'
+                                                points='1080 300 1170 150 990 150' /><polygon
+                                                points='1080 600 990 750 1170 750' /><polygon
+                                                fill='#666'
+                                                points='1080 600 1170 450 990 450' /><polygon
+                                                fill='#DDD'
+                                                points='1080 900 1170 750 990 750' /></g></pattern></defs><rect
+                                    x='0' y='0' fill='url(#a)' width='100%'
+                                    height='100%' /><rect x='0' y='0'
+                                    fill='url(#b)' width='100%'
+                                    height='100%' /></svg>
+                        </div>
+                        <div class="card__avatar">
+                            <img src="/static/img/<%= user.img %>" alt>
+                        </div>
+                        <div class="card__title"><%= user.name %></div>
+                        <div class="card__subtitle"><%= %></div>
+                        <div class="card__wrapper">
+                            <form method="post"
+                                action="/follow/<%= user._id %>">
+                                <% if (user._id.toString() != currentUser?._id){
+                                %>
+                                <button class="btn custom-btn" type="submit">
+                                    <%=
+                                    (currentUser?.following.includes(user._id.toString()))
+                                    ? 'Following' : 'Follow' %>
+                                </button>
+                                <% } %>
+                                <% if (user._id == currentUser?._id) { %>
+                                <a href="/admin-panel/profile-settings"
+                                    class="btn custom-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        version="1.1" id="Capa_1" x="0px"
+                                        y="0px" viewBox="0 0 512 512"
+                                        style="enable-background:new 0 0 512 512;"
+                                        xml:space="preserve" width="24"
+                                        fill="white"
+                                        height="24">
+                                        <g>
+                                            <path
+                                                d="M34.283,384c17.646,30.626,56.779,41.148,87.405,23.502c0.021-0.012,0.041-0.024,0.062-0.036l9.493-5.483   c17.92,15.332,38.518,27.222,60.757,35.072V448c0,35.346,28.654,64,64,64s64-28.654,64-64v-10.944   c22.242-7.863,42.841-19.767,60.757-35.115l9.536,5.504c30.633,17.673,69.794,7.167,87.467-23.467   c17.673-30.633,7.167-69.794-23.467-87.467l0,0l-9.472-5.461c4.264-23.201,4.264-46.985,0-70.187l9.472-5.461   c30.633-17.673,41.14-56.833,23.467-87.467c-17.673-30.633-56.833-41.14-87.467-23.467l-9.493,5.483   C362.862,94.638,342.25,82.77,320,74.944V64c0-35.346-28.654-64-64-64s-64,28.654-64,64v10.944   c-22.242,7.863-42.841,19.767-60.757,35.115l-9.536-5.525C91.073,86.86,51.913,97.367,34.24,128s-7.167,69.794,23.467,87.467l0,0   l9.472,5.461c-4.264,23.201-4.264,46.985,0,70.187l-9.472,5.461C27.158,314.296,16.686,353.38,34.283,384z M256,170.667   c47.128,0,85.333,38.205,85.333,85.333S303.128,341.333,256,341.333S170.667,303.128,170.667,256S208.872,170.667,256,170.667z" />
+                                        </g>
+
+                                    </svg>
+                                </a>
+                                <% } %>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-8 ">
+                    <%- include('../partials/tabview.ejs' ,{projects})
+                    %>
+                </div>
+            </div>
+        </div>
+
+        <%- include('../partials/footer.ejs') %>
+
+    </body>
+</html>

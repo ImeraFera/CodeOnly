@@ -9,13 +9,15 @@
         <div class="container-xxl position-relative  d-flex p-0">
 
             <!-- Sidebar Start -->
-            <%- include('../admin-partials/sidebar.ejs') %>
+            <%- include('../admin-partials/sidebar.ejs', {user : data.user})
+            %>
             <!-- Sidebar End -->
 
             <!-- Content Start -->
             <div class="content bg-dark">
                 <!-- Navbar Start -->
-                <%- include('../admin-partials/navbar.ejs') %>
+                <%- include('../admin-partials/navbar.ejs' , {user: data.user})
+                %>
                 <!-- Navbar End -->
 
                 <!-- Widgets Start -->

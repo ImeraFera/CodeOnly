@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand  navbar-light  px-4 py-0">
-    <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+    <a href="/admin-panel/" class="navbar-brand d-flex d-lg-none me-4">
         <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
     </a>
     <a href="#" class="sidebar-toggler flex-shrink-0">
@@ -97,16 +97,18 @@
             <a href="#" class="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown">
                 <img class="rounded-circle me-lg-2"
-                    src="/static/img/<%= user.img %>" alt
+                    src="/static/img/<%= data.user.img %>" alt
                     style="width: 40px; height: 40px;">
                 <span class="d-none d-lg-inline-flex"><%=
-                    user.name%></span>
+                    data.user.name%></span>
             </a>
             <div
                 class="dropdown-menu dropdown-menu-end  bg-dark border-0 rounded-0 rounded-bottom m-0">
-                <a href="#" class="dropdown-item text-primary">My Profile</a>
-                <a href="#" class="dropdown-item text-primary">Settings</a>
-                <a href="#" class="dropdown-item text-primary">Log Out</a>
+
+                <a href="/admin-panel/profile-settings"
+                    class="dropdown-item text-primary">My Profile</a>
+                <a href="/admin-panel/logout"
+                    class="dropdown-item text-primary">Log Out</a>
             </div>
         </div>
     </div>

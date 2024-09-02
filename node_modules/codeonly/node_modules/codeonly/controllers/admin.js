@@ -1,6 +1,3 @@
-let activePage = {
-    name: "",
-};
 
 const Category = require('../models/category');
 const Comment = require('../models/comment');
@@ -10,80 +7,122 @@ const SocialLink = require('../models/socialLinks');
 const Role = require('../models/role');
 
 const { removeOldFile } = require('../helpers/removeOldFile');
+const { mongoose } = require('mongoose');
 
-exports.postDeleteProject = async (req, res) => {
+exports.logout = (req, res) => {
+    req.session.destroy();
+    return res.redirect('/');
+}
 
-    const projectId = req.params.project_id;
+exports.getFollowing = async (req, res) => {
+
 
     try {
+        const user = await User.findOne({
+            _id: res.locals.user._id,
+        }).populate({
+            path: 'role',
+            select: 'roleType'
+        })
+        const data = {
+            user,
+        }
 
-        const project = await Project.findById(projectId).populate({
-            path: 'category',
-        });
+        return res.render('admin/following', { data });
+    } catch (error) {
+        console.log(error)
+    }
 
-        await Category.findOneAndUpdate({
-            _id: project.category._id,
-        }, {
-            $inc: { numberOfProjects: -1 },
+
+}
+
+exports.getComments = async (req, res) => {
+
+    try {
+        const user = await User.findOne({
+            _id: res.locals.user._id,
+        }).populate({
+            path: 'role',
+            select: 'roleType'
         })
 
-        await Comment.deleteMany({
-            project: project._id,
-        })
+        const projects = await Project.find({
+            author: res.locals.user._id,
+        }).select('comments');
 
-        await Project.deleteOne({
-            _id: projectId,
-        })
 
-        return res.redirect('/admin-panel/project-list')
+        const commentIds = projects.flatMap(project => project.comments);
+
+        const comments = await Comment.find({
+            _id: { $in: commentIds }
+        }).populate({
+            path: 'whoSend',
+            select: 'name',
+        }).populate({
+            path: 'project',
+            select: 'title'
+        }).select(' date content project whoSend')
+
+        console.log(comments)
+
+        const data = {
+            user,
+            comments,
+        }
+        return res.render('admin/comments', { data });
 
     } catch (error) {
         console.log(error);
     }
 
+
 }
 
-exports.getFollowing = (req, res) => {
-    activePage.name = "following";
-    res.render('admin/following', { activePage });
-}
+exports.getToDo = async (req, res) => {
 
-exports.getToDo = (req, res) => {
-    activePage.name = "to-do";
-    res.render('admin/to-do', { activePage });
+    try {
+        const user = await User.findOne({
+            _id: res.locals.user._id,
+        }).populate({
+            path: 'role',
+            select: 'roleType'
+        })
+        const data = {
+            user,
+        }
+        return res.render('admin/to-do', { data });
+    } catch (error) {
+
+    }
+
+
 }
 
 exports.getNewProject = async (req, res) => {
 
-    const categories = await Category.find({}, 'name _id');
+    try {
+        const categories = await Category.find({}, 'name _id');
+        const user = await User.findOne({
+            _id: res.locals.user._id,
+        }).populate({
+            path: 'role',
+            select: 'roleType'
+        })
 
-    activePage.name = "new-project";
-    res.render('admin/new-project', { activePage, categories, });
+        const data = {
+            categories,
+            user,
+        }
+
+        return res.render('admin/new-project', { data });
+    } catch (error) {
+
+    }
+
+
 }
 
 exports.getProjectList = async (req, res) => {
-
-
-    try {
-
-        const projects = await Project.find({
-            author: res.locals.user._id,
-        }).populate({
-            path: 'category',
-        });
-
-        activePage.name = "project-list";
-        return res.render('admin/project-list', { activePage, projects });
-
-    } catch (error) {
-        console.log(error);
-    }
-
-}
-
-exports.getHome = async (req, res) => {
-    activePage.name = "home";
-
     try {
 
         const user = await User.findOne({
@@ -91,7 +130,68 @@ exports.getHome = async (req, res) => {
         }).populate({
             path: 'role',
             select: 'roleType'
+        })
+
+        const projects = await Project.find({
+            author: res.locals.user._id,
+        }).populate({
+            path: 'category',
         });
+
+        const data = {
+            projects,
+            user,
+        }
+
+        return res.render('admin/project-list', { data });
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+exports.getEditProject = async (req, res) => {
+
+    const projectId = req.params.project_id;
+    const userId = res.locals.user._id;
+    try {
+        const user = await User.findOne({
+            _id: res.locals.user._id,
+        }).populate({
+            path: 'role',
+            select: 'roleType'
+        })
+
+        const project = await Project.findOne({
+            author: userId,
+            _id: projectId,
+        })
+
+        const categories = await Category.find();
+
+        const data = {
+            categories,
+            project,
+            user,
+        }
+
+        return res.render('admin/edit-project', { data })
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+exports.getHome = async (req, res) => {
+
+    try {
+        const user = await User.findOne({
+            _id: res.locals.user._id,
+        }).populate({
+            path: 'role',
+            select: 'roleType'
+        })
+
 
         const userScore = await User.findOne({
             _id: res.locals.user._id,
@@ -120,13 +220,31 @@ exports.getHome = async (req, res) => {
             }
         ]);
 
+        const projects = await Project.find({
+            author: res.locals.user._id,
+        }).select('comments');
+
+        const commentIds = projects.flatMap(project => project.comments);
+
+        const bestComments = await Comment.find({
+            _id: { $in: commentIds }
+        })
+            .populate({
+                path: 'whoSend',
+                select: 'name img'
+            })
+            .limit(10);
+
+
+
         const data = {
             bestProject,
             userScore,
-            user
+            user,
+            bestComments
         }
 
-        return res.render('admin/admin-home', { activePage, data });
+        return res.render('admin/admin-home', { data });
 
     } catch (error) {
 
@@ -147,13 +265,15 @@ exports.getProfileSettings = async (req, res) => {
 
         const user = await User.findOne({
             _id: res.locals.user._id,
+        }).populate({
+            path: 'role',
+            select: 'roleType'
         })
 
         const data = { socialLinks, user }
 
 
-        activePage.name = "profile-settings";
-        return res.render('admin/profile-settings', { activePage, data });
+        return res.render('admin/profile-settings', { data });
 
     } catch (error) {
         console.log(error);
@@ -265,28 +385,6 @@ exports.postNewProject = async (req, res) => {
 
 }
 
-exports.getEditProject = async (req, res) => {
-    activePage.name = "projectList";
-
-    const projectId = req.params.project_id;
-    const userId = res.locals.user._id;
-    activePage = "";
-    try {
-
-        const project = await Project.findOne({
-            author: userId,
-            _id: projectId,
-        })
-
-        const categories = await Category.find();
-
-        return res.render('admin/edit-project', { project, activePage, categories })
-
-    } catch (error) {
-        console.log(error);
-    }
-}
-
 exports.postEditProject = async (req, res) => {
 
     const projectId = req.params.project_id;
@@ -333,6 +431,38 @@ exports.postEditProject = async (req, res) => {
         console.log(error)
     }
 
+
+}
+
+exports.postDeleteProject = async (req, res) => {
+
+    const projectId = req.params.project_id;
+
+    try {
+
+        const project = await Project.findById(projectId).populate({
+            path: 'category',
+        });
+
+        await Category.findOneAndUpdate({
+            _id: project.category._id,
+        }, {
+            $inc: { numberOfProjects: -1 },
+        })
+
+        await Comment.deleteMany({
+            project: project._id,
+        })
+
+        await Project.deleteOne({
+            _id: projectId,
+        })
+
+        return res.redirect('/admin-panel/project-list')
+
+    } catch (error) {
+        console.log(error);
+    }
 
 }
 

@@ -5,13 +5,81 @@ const Comment = require('../models/comment');
 const Filter = require('bad-words');
 const filter = new Filter();
 const Joi = require('joi');
+const showdown = require('showdown');
+
 var sendCommentPoint = 5;
 var likeCommentPoint = 7;
 var likeProjectPoint = 10;
 
+exports.postFollow = async (req, res) => {
+    const userId = req.params.user_id;
+    const currentUser = res.locals.user || null;
 
-exports.getMyProfile = async (req, res) => {
-    res.render('user/my-profile');
+    if (!currentUser) {
+        req.flash("error", "You must login.")
+        return res.redirect('/login');
+    }
+
+    if (currentUser.following.includes(userId)) {
+        req.flash("error", "You are already following this user")
+        return res.redirect('/profile/' + userId)
+    }
+
+    try {
+
+        await User.updateOne(
+            {
+                _id: currentUser._id,
+            },
+            {
+                $addToSet: {
+                    following: userId,
+                }
+            }
+        )
+
+        req.flash("success", "You are following!")
+        return res.redirect('/profile/' + userId)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.getProfile = async (req, res) => {
+
+    const userId = req.params.user_id;
+    const currentUser = res.locals.user || null;
+
+    if (!currentUser && !userId) {
+        req.flash("error", "We can not find you want to go.")
+        return res.redirect('/');
+    }
+
+    const converter = new showdown.Converter();
+
+    try {
+        const user = await User.findOne({
+            _id: userId,
+        })
+        const projects = await Project.find({
+            author: user._id
+
+        })
+
+        user.bio = converter.makeHtml(user.bio);
+
+        const data = {
+            user,
+            projects,
+            currentUser,
+        }
+
+        return res.render('user/profile', data);
+    } catch (error) {
+        console.log(error)
+    }
+
+
 }
 
 exports.getLikeProject = async (req, res) => {
@@ -69,6 +137,7 @@ exports.postComment = async (req, res) => {
     if (filter.isProfane(content)) {
         console.log('The Bad Words was cleaned');
     }
+
 
     const schema = Joi.object({
         project: Joi.string().required().messages({

@@ -1,0 +1,30 @@
+ <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item " role="presentation">
+        <button class="nav-link bg-dark text-light active" id="home-tab"
+            data-bs-toggle="tab" data-bs-target="#home"
+            type="button" role="tab" aria-controls="home"
+            aria-selected="true">Overview</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link bg-dark text-light" id="profile-tab"
+            data-bs-toggle="tab" data-bs-target="#profile"
+            type="button" role="tab" aria-controls="profile"
+            aria-selected="false">My Projects</button>
+    </li>
+</ul>
+<div class="tab-content text-light" id="myTabContent">
+    <div class="tab-pane  fade show active" id="home" role="tabpanel"
+        aria-labelledby="home-tab">
+        <%- user.bio %>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel"
+        aria-labelledby="profile-tab">
+        <div class="row justify-content-between">
+            <% projects.forEach(project => { %>
+            <%- include('../partials/profile-project-card.ejs', {project}) %>
+            <% }) %>
+        </div>
+
+    </div>
+
+</div>

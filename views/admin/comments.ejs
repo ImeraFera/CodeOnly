@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <%- include('../admin-partials/header.ejs') %>
+    </head>
+
+    <body>
+        <div class="container-xxl position-relative  d-flex p-0">
+
+            <!-- Sidebar Start -->
+            <%- include('../admin-partials/sidebar.ejs', {user : data.user})
+            %>
+            <!-- Sidebar End -->
+
+            <!-- Content Start -->
+            <div class="content bg-dark">
+                <!-- Navbar Start -->
+                <%- include('../admin-partials/navbar.ejs' , {user: data.user})
+                %>
+                <!-- Navbar End -->
+
+                <!-- Widgets Start -->
+                <div class="container-fluid pt-4 px-4">
+                    <div class="row g-4">
+                        <div class="col-md-12">
+                            <div
+                                class="bg-dark border border-2 border-primary rounded p-4">
+                                <div class>
+                                    <div
+                                        class="bg-transparent rounded h-100 p-4">
+                                        <h6 class="mb-4 text-light">Comment
+                                            List</h6>
+                                        <div class="d-flex mb-2">
+                                            <input type="text"
+                                                class="form-control form-control-sm border border-2 border-primary  bg-transparent text-light"
+                                                placeholder="Search For Comment"
+                                                name id>
+                                        </div>
+                                        <table
+                                            class="table text-center ">
+                                            <thead class="text-primary">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">
+                                                        Sender</th>
+                                                    <th scope="col">Project</th>
+                                                    <th scope="col">Date</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-light">
+                                                <%
+                                                data.comments.forEach((comment,
+                                                index) => { %>
+                                                <tr>
+                                                    <th scope="row"><%= index +
+                                                        1 %></th>
+                                                    <td><%= comment.whoSend ?
+                                                        comment.whoSend.name :
+                                                        'Unknown' %></td>
+                                                    <td>
+                                                        <%=
+                                                        comment.project.title
+                                                        %>
+                                                    </td>
+
+                                                    <td><%= comment.date %></td>
+                                                    <td>
+                                                        <button class="btn"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modal<%= comment._id %>">
+                                                            <i
+                                                                class="fas fa-search text-white"></i>
+                                                        </button>
+
+                                                    </td>
+                                                    <div class="modal fade"
+                                                        id="modal<%= comment._id %>"
+                                                        tabindex="-1"
+                                                        aria-labelledby="modalLabel<%= comment._id %>"
+                                                        aria-hidden="true">
+                                                        <div
+                                                            class="modal-dialog bg-dark text-light">
+                                                            <div
+                                                                class="modal-content bg-dark text-light">
+                                                                <div
+                                                                    class="modal-header bg-dark text-light border-0">
+                                                                    <h5
+                                                                        class="text-white text-center"
+                                                                        id="modalLabel<%= comment._id %>">Comment</h5>
+                                                                </div>
+                                                                <div
+                                                                    class="modal-body">
+                                                                    <p
+                                                                        class="text-center fs-5"><%=
+                                                                        comment.content
+                                                                        %></p>
+                                                                </div>
+                                                                <div
+                                                                    class="modal-footer border-0">
+                                                                    <button
+                                                                        type="button"
+                                                                        class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                                <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Widgets End -->
+
+                <!-- Footer Start -->
+                <%- include('../admin-partials/footer.ejs') %>
+
+                <!-- Footer End -->
+            </div>
+            <!-- Content End -->
+
+            <!-- Back to Top -->
+
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script
+            src="/static/admin-panel-assets/lib/chart/chart.min.js"></script>
+        <script
+            src="/static/admin-panel-assets/lib/easing/easing.min.js"></script>
+        <script
+            src="/static/admin-panel-assets/lib/waypoints/waypoints.min.js"></script>
+        <script
+            src="/static/admin-panel-assets/lib/owlcarousel/owl.carousel.min.js"></script>
+        <script
+            src="/static/admin-panel-assets/lib/tempusdominus/js/moment.min.js"></script>
+        <script
+            src="/static/admin-panel-assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script
+            src="/static/admin-panel-assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="/static/admin-panel-assets/js/main.js"></script>
+
+        <script>
+
+            window.addEventListener("load", ()=>{
+
+                document.getElementById("")
+
+            })
+
+        </script>
+    </body>
+
+</html>
