@@ -2,6 +2,8 @@ const User = require('../models/user');
 const Category = require('../models/category');
 const Project = require('../models/project');
 const Comment = require('../models/comment');
+const SocialLinks = require('../models/socialLinks');
+
 const Filter = require('bad-words');
 const filter = new Filter();
 const Joi = require('joi');
@@ -258,15 +260,20 @@ exports.getProject = async (req, res) => {
         const project = await Project.findOne({ _id: projectId })
             .populate({
                 path: 'author',
-                select: 'name img socialLinks projects'
+                select: 'name img socialLinks projects',
+                populate: {
+                    path: 'socialLinks',
+                }
             })
             .populate({
                 path: 'comments',
                 populate: {
                     path: 'whoSend',
-                    select: 'name'
+                    select: 'name',
+
                 }
-            }).populate({
+            })
+            .populate({
                 path: 'category',
                 select: 'name'
             })
@@ -286,6 +293,7 @@ exports.getProject = async (req, res) => {
         if (project.author.img == null) {
             project.author.img = 'user_default.png'
         }
+        console.log(project.author.socialLinks)
         return res.render('user/code-details', { project, user, moreProjects });
     } catch (error) {
         console.log(error)

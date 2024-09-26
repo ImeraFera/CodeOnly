@@ -139,14 +139,17 @@
                             </div>
                             <div
                                 class="card-body rounded-bottom-3  d-flex justify-content-center">
-                                <a href="https://instagram.com"
+                                <a
+                                 href="<%= project.author.socialLinks.instagram %>"
+
                                     class="mx-2 ">
                                     <img width="48px"
                                         class="social-link"
                                         src="/static/img/instagram.svg" alt>
                                 </a>
-                                <a href="https://github.com"
-                                    class="mx-2 ">
+                                <a
+                                href="<%= project.author.socialLinks.github %>"
+                                class="mx-2 ">
                                     <img width="48px"
                                         class="social-link"
                                         src="/static/img/github.svg" alt>
@@ -335,8 +338,7 @@
 
             </div>
         </div>
-        <script
-            src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      
         <script src="/static/prism/prism.js"></script>
 
         <%- include('../partials/footer.ejs') %>

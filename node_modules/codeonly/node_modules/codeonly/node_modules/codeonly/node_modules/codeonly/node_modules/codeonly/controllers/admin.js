@@ -14,19 +14,52 @@ exports.logout = (req, res) => {
     return res.redirect('/');
 }
 
+exports.getDeleteFollowing = async (req, res) => {
+    const deleteFollowingUserId = req.params.user_id;
+    const currentUserId = res.locals.user._id;
+    try {
+        const response = await User.findOneAndUpdate(
+            {
+                _id: currentUserId
+            },
+            {
+                $pull: {
+                    following: deleteFollowingUserId,
+                }
+            },
+            { new: true }
+        )
+        console.log(response)
+        return res.redirect('/admin-panel/following')
+    } catch (error) {
+        console.log(error);
+    }
+
+
+}
+
 exports.getFollowing = async (req, res) => {
 
 
     try {
-        const user = await User.findOne({
-            _id: res.locals.user._id,
-        }).populate({
-            path: 'role',
-            select: 'roleType'
-        })
+        const user = await User
+            .findOne({
+                _id: res.locals.user._id,
+            })
+            .populate({
+                path: 'role',
+                select: 'roleType'
+            })
+            .populate({
+                path: 'following',
+                select: 'name email'
+            })
+
         const data = {
             user,
         }
+
+        console.log(data.user.following);
 
         return res.render('admin/following', { data });
     } catch (error) {
